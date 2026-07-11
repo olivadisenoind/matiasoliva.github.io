@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Matías Oliva — Diseño / Design</title>
+<meta name="description" content="Matías Oliva. Diseño como acto cultural: innovación social, Cradle to Cradle y sustentabilidad." />
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14150F;
+    --ink-2:#1B1D15;
+    --bone:#EFEBDE;
+    --bone-dim:#A9A79A;
+    --ultra:#3A46FF;
+    --ultra-2:#6B74FF;
+    --line:rgba(239,235,222,0.14);
+    --font-display:"Bricolage Grotesque",system-ui,sans-serif;
+    --font-body:"Newsreader",Georgia,serif;
+    --font-mono:"Space Mono",ui-monospace,monospace;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:var(--font-body);
+    font-size:clamp(1rem,0.9rem + 0.4vw,1.18rem);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  ::selection{background:var(--ultra);color:var(--bone)}
+
+  a{color:inherit;text-decoration:none}
+  a:focus-visible,button:focus-visible{
+    outline:2px solid var(--ultra-2);
+    outline-offset:4px;
+    border-radius:2px;
+  }
+
+  .wrap{width:100%;max-width:1440px;margin:0 auto;padding:0 clamp(1.25rem,4vw,3rem)}
+  .wrap-wide{width:100%;padding:0 clamp(1rem,3vw,2rem)}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--bone-dim);
+  }
+  .eyebrow .sec{color:var(--ultra-2)}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(20,21,15,0.72);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0.9rem clamp(1.25rem,4vw,3.5rem);
+  }
+  .brand{display:flex;flex-direction:row;align-items:center;gap:0.65rem;line-height:1.05}
+  .brand-logo{height:34px;width:auto;display:block;border-radius:3px}
+  .brand-txt{display:flex;flex-direction:column;line-height:1.05}
+  .brand-txt b{font-family:var(--font-display);font-weight:700;font-size:1.02rem;letter-spacing:-0.01em;color:var(--bone)}
+  .brand-txt span{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:2px}
+  .nav-links{display:flex;gap:1.6rem;align-items:center}
+  .nav-links a{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim);transition:color .2s}
+  .nav-links a:hover{color:var(--bone)}
+  .lang{display:flex;gap:0.15rem;align-items:center;font-family:var(--font-mono);font-size:0.72rem}
+  .lang button{
+    background:none;border:none;cursor:pointer;color:var(--bone-dim);
+    padding:4px 6px;font-family:inherit;font-size:inherit;letter-spacing:0.06em;
+    text-transform:uppercase;transition:color .2s;
+  }
+  .lang button:hover{color:var(--bone)}
+  .lang button[data-lang="es"]:hover{color:#6B74FF}
+  .lang button[data-lang="pt"]:hover{color:#FF7C4D}
+  .lang button[data-lang="en"]:hover{color:#55D06E}
+  .lang button[aria-pressed="true"]{color:var(--ultra-2);font-weight:700}
+  .lang .sep{color:var(--line)}
+  .lang .sep{color:var(--line)}
+  @media(max-width:760px){ .nav-mid{display:none} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:6rem;padding-bottom:4rem;
+    position:relative;
+  }
+  .hero-eyebrow{margin-bottom:2.2rem}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.6rem,1.4rem + 6.4vw,7rem);
+    line-height:0.95;
+    letter-spacing:-0.035em;
+    max-width:16ch;
+  }
+  .cycle{
+    display:inline-block;position:relative;color:var(--ultra-2);
+    min-width:4ch;
+  }
+  .cycle .word{display:inline-block}
+  .cycle::after{
+    content:"";display:inline-block;width:0.62em;height:0.09em;
+    background:var(--ultra);vertical-align:0.2em;margin-left:0.12em;
+    animation:blink 1.15s steps(2,start) infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+  @media(prefers-reduced-motion:reduce){ .cycle::after{animation:none} }
+
+  .hero-lede{
+    margin-top:2.6rem;
+    max-width:44ch;
+    font-size:clamp(1.1rem,1rem + 0.5vw,1.4rem);
+    color:var(--bone);
+    line-height:1.5;
+  }
+  .scroll-hint{
+    margin-top:auto;padding-top:3rem;
+    font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.16em;
+    text-transform:uppercase;color:var(--bone-dim);
+    display:flex;align-items:center;gap:0.6rem;
+  }
+  .scroll-hint::before{content:"";width:2.4rem;height:1px;background:var(--bone-dim)}
+
+  /* ---------- SECTION SHELL ---------- */
+  .section{padding:clamp(5rem,10vh,9rem) 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;gap:1rem;align-items:center;margin-bottom:3rem}
+  .sec-head .mark{font-family:var(--font-mono);color:var(--ultra-2);font-size:0.9rem;display:inline-flex;align-items:center}
+
+  /* ---------- MANIFIESTO ---------- */
+  .manifiesto p{
+    font-size:clamp(1.35rem,1rem + 1.5vw,2.35rem);
+    line-height:1.32;
+    letter-spacing:-0.01em;
+    max-width:26ch;
+    margin-bottom:1.6rem;
+  }
+  .manifiesto em{font-style:italic;color:var(--ultra-2)}
+  .manifiesto .full{
+    font-size:clamp(1.05rem,1rem + 0.3vw,1.22rem);
+    line-height:1.62;max-width:60ch;color:var(--bone-dim);
+    margin-top:2.4rem;
+  }
+  .manifiesto .full strong{color:var(--bone);font-weight:500}
+
+  /* ---------- ENFOQUE ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+  .pillar{background:var(--ink);padding:2.4rem 2rem;min-height:17rem;display:flex;flex-direction:column;align-items:center;text-align:center;transition:background .3s}
+  .pillar:hover{background:var(--ink-2)}
+  .pillar .p-mark{font-family:var(--font-mono);font-size:0.72rem;color:var(--ultra-2);letter-spacing:0.1em}
+  .pillar h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.4rem,1rem + 1vw,1.9rem);line-height:1.1;letter-spacing:-0.02em;margin:1.4rem 0 1rem}
+  .pillar p{font-size:0.98rem;line-height:1.55;color:var(--bone-dim);max-width:32ch}
+  @media(max-width:760px){ .pillars{grid-template-columns:1fr} .pillar{min-height:auto} }
+
+  /* ---------- PRÁCTICA ---------- */
+  .rows{border-top:1px solid var(--line)}
+  .row{
+    display:grid;grid-template-columns:7rem 1fr auto;gap:1.2rem;align-items:baseline;
+    padding:1.15rem 0;border-bottom:1px solid var(--line);
+  }
+  .row .yr{font-family:var(--font-mono);font-size:0.76rem;color:var(--bone-dim);letter-spacing:0.04em}
+  .row .body h4{font-family:var(--font-display);font-weight:600;font-size:clamp(1.02rem,1rem + 0.2vw,1.18rem);letter-spacing:-0.01em;line-height:1.15}
+  .row .body p{font-size:0.88rem;color:var(--bone-dim);margin-top:0.2rem;max-width:52ch}
+  .row .tag{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ultra-2);border:1px solid var(--ultra);padding:3px 9px;border-radius:100px;white-space:nowrap}
+  @media(max-width:680px){
+    .row{grid-template-columns:1fr;gap:0.35rem}
+    .row .tag{justify-self:start;margin-top:0.5rem}
+  }
+
+  /* ---------- PROYECTOS (carrusel) ---------- */
+  .project + .project{margin-top:clamp(3rem,6vh,5rem)}
+  .project-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1.1rem;padding-bottom:0.7rem;border-bottom:1px solid var(--line)}
+  .project-head b{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,1rem + 1vw,2rem);letter-spacing:-0.02em}
+  .project-head span{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--bone-dim);white-space:nowrap}
+  .carousel{position:relative}
+  .c-fullbleed{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
+  .c-track{
+    overflow:hidden;
+    padding-bottom:0.4rem;
+    cursor:grab;
+    touch-action:pan-y;
+  }
+  .c-track.dragging{cursor:grabbing}
+  .c-track:focus-visible{outline:2px solid var(--ultra-2);outline-offset:6px;border-radius:4px}
+  .c-rail{
+    display:flex;gap:clamp(0.9rem,2vw,1.6rem);
+    will-change:transform;
+  }
+  .slide{flex:0 0 92%}
+  @media(min-width:700px){ .slide{flex-basis:72%} }
+  @media(min-width:1100px){ .slide{flex-basis:60%} }
+  .slide-media{
+    position:relative;height:min(72vh,640px);overflow:hidden;
+    background:var(--ink-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+  }
+  @media(max-width:700px){ .slide-media{height:min(58vh,460px)} }
+  .slide-media img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+  .slide-media .ph{
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-mono);font-size:0.8rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--bone-dim);
+    background:repeating-linear-gradient(45deg,transparent,transparent 16px,rgba(239,235,222,0.03) 16px,rgba(239,235,222,0.03) 17px);
+  }
+  .slide-meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:1rem;padding-bottom:0.7rem;border-bottom:1px solid var(--line)}
+  .slide-meta b{font-family:var(--font-display);font-weight:600;font-size:clamp(1.2rem,1rem + 0.8vw,1.7rem);letter-spacing:-0.02em}
+  .slide-meta span{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--bone-dim);white-space:nowrap}
+  .c-ctrl{display:flex;align-items:center;gap:1.4rem;margin-top:1.9rem}
+  .c-btn{
+    width:3rem;height:3rem;border-radius:50%;border:1px solid var(--line);background:none;
+    color:var(--bone);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s,color .2s;
+  }
+  .c-btn:hover{border-color:var(--ultra);color:var(--ultra-2)}
+  .c-count{font-family:var(--font-mono);font-size:0.9rem;letter-spacing:0.12em;color:var(--bone-dim)}
+  .c-count b{color:var(--bone);font-weight:700}
+  .c-slash{color:var(--line);margin:0 0.2rem}
+
+  /* ---------- CONTACTO ---------- */
+  .contacto{border-top:1px solid var(--line)}
+  .cta-line{
+    font-family:var(--font-display);font-weight:700;
+    font-size:clamp(2.4rem,1.2rem + 5vw,5.5rem);
+    line-height:0.98;letter-spacing:-0.03em;max-width:14ch;
+  }
+  .cta-mail{color:var(--ultra-2);border-bottom:2px solid var(--ultra);transition:color .2s}
+  .cta-mail:hover{color:var(--bone)}
+  .socials{display:flex;flex-wrap:wrap;gap:1.6rem;margin-top:3rem}
+  .socials a{font-family:var(--font-mono);font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim);border-bottom:1px solid transparent;transition:.2s;padding-bottom:2px}
+  .socials a:hover{color:var(--bone);border-color:var(--ultra)}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:2.2rem 0}
+  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim)}
+
+  /* ---------- descripción breve sobre el carrusel ---------- */
+  .slide-caption{
+    position:absolute;left:0;right:0;bottom:0;z-index:3;pointer-events:none;
+    padding:3.5rem clamp(1.2rem,3vw,2rem) 1.3rem;
+    background:linear-gradient(transparent 0%,rgba(16,17,12,0.55) 40%,rgba(16,17,12,0.92) 100%);
+    font-family:var(--font-body);font-size:clamp(0.98rem,0.95rem + 0.2vw,1.14rem);line-height:1.42;
+    color:var(--bone);letter-spacing:-0.005em;
+    transition:opacity .45s ease;
+  }
+  .slide-caption > span{display:block;max-width:70ch}
+  /* oculta por defecto; visible solo cuando la imagen 01 está centrada */
+  .slide-caption{opacity:0}
+  .project.show-caption .slide-caption{opacity:1}
+  /* al pasar el mouse sobre la foto se aparta para no tapar la imagen */
+  .project.show-caption .slide-media:hover .slide-caption{opacity:0}
+  @media (prefers-reduced-motion: reduce){ .slide-caption{transition:none} }
+
+  /* ---------- llamita de sección (color según idioma) ---------- */
+  .flame{display:inline-block;width:1.05em;height:1.4em;margin-right:0.4em;vertical-align:middle;color:var(--ultra-2)}
+  .flame svg{width:100%;height:100%;display:block;transform-origin:50% 100%;animation:flicker 1.9s ease-in-out infinite}
+  @keyframes flicker{
+    0%,100%{transform:scale(1,1);opacity:1}
+    18%{transform:scale(1.06,0.94);opacity:.9}
+    38%{transform:scale(0.95,1.07);opacity:1}
+    58%{transform:scale(1.04,0.97);opacity:.94}
+    78%{transform:scale(0.98,1.03);opacity:1}
+  }
+  @media (prefers-reduced-motion: reduce){ .flame svg{animation:none} }
+
+  /* ---------- MANIFIESTO: enlace y lector ---------- */
+  .manifesto-link{font:inherit;color:var(--ultra-2);background:none;border:none;padding:0 0 1px;cursor:pointer;border-bottom:2px solid var(--ultra);transition:color .2s}
+  .manifesto-link:hover{color:var(--bone)}
+  body.reader-open{overflow:hidden}
+  .reader{position:fixed;inset:0;z-index:100;display:none}
+  .reader.open{display:block}
+  .reader-backdrop{position:absolute;inset:0;background:rgba(8,9,6,0.74);backdrop-filter:blur(4px)}
+  .reader-panel{
+    position:relative;margin:clamp(1rem,5vh,3rem) auto 0;max-width:800px;width:calc(100% - 2rem);
+    max-height:calc(100dvh - clamp(2rem,10vh,6rem));display:flex;flex-direction:column;
+    background:var(--ink-2);border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  }
+  @media (prefers-reduced-motion: no-preference){ .reader.open .reader-panel{animation:readerIn .34s ease} }
+  @keyframes readerIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .reader-top{display:flex;align-items:center;gap:0.9rem;padding:1.2rem clamp(1.2rem,3vw,2rem);border-bottom:1px solid var(--line)}
+  .reader-eyebrow{font-family:var(--font-mono);color:var(--ultra-2);font-size:0.82rem}
+  .reader-title{font-family:var(--font-display);font-weight:600;font-size:1.15rem;letter-spacing:-0.01em;flex:1}
+  .reader-close{background:none;border:1px solid var(--line);color:var(--bone-dim);font-family:var(--font-mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;border-radius:100px;cursor:pointer;transition:.2s;white-space:nowrap}
+  .reader-close:hover{color:var(--bone);border-color:var(--ultra)}
+  .reader-chapters{display:flex;gap:0.5rem;flex-wrap:wrap;padding:1rem clamp(1.2rem,3vw,2rem);border-bottom:1px solid var(--line)}
+  .reader-chapters button{font-family:var(--font-mono);font-size:0.74rem;letter-spacing:0.06em;background:none;border:1px solid var(--line);color:var(--bone-dim);padding:6px 13px;border-radius:100px;cursor:pointer;transition:.2s}
+  .reader-chapters button:hover{color:var(--bone)}
+  .reader-chapters button.active{color:var(--ink);background:var(--ultra-2);border-color:var(--ultra-2);font-weight:700}
+  .reader-body{padding:clamp(1.5rem,4vw,2.6rem);overflow-y:auto;font-family:var(--font-body)}
+  .reader-body .chap-kicker{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ultra-2);margin-bottom:0.7rem;display:block}
+  .reader-body h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.5rem,1rem + 1.6vw,2.4rem);letter-spacing:-0.02em;line-height:1.04;margin-bottom:1.4rem}
+  .reader-body p{font-size:clamp(1.05rem,1rem + 0.3vw,1.22rem);line-height:1.66;color:var(--bone);margin-bottom:1.1rem;max-width:62ch}
+  .reader-body p.lead{font-size:clamp(1.3rem,1rem + 1vw,1.75rem);line-height:1.38;letter-spacing:-0.01em}
+  .reader-body em{font-style:italic;color:var(--ultra-2)}
+  .reader-body .soon{display:flex;flex-direction:column;align-items:center;gap:1rem;padding:3.4rem 1rem;text-align:center}
+  .reader-body .soon .badge{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--bone-dim);border:1px solid var(--line);border-radius:100px;padding:7px 15px}
+  .reader-body .soon p{color:var(--bone-dim);max-width:34ch;margin:0}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <img class="brand-logo" src="data:image/png;base64,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" alt="Logo de Matías Oliva" width="84" height="132">
+      <span class="brand-txt">
+        <b>Matías Oliva</b>
+        <span data-i18n="role">Diseñador · Project Manager</span>
+      </span>
+    </a>
+    <nav class="nav-links nav-mid" aria-label="Secciones">
+      <a href="#manifiesto" data-i18n="nav1">Manifiesto</a>
+      <a href="#enfoque" data-i18n="nav2">Enfoque</a>
+      <a href="#practica" data-i18n="nav3">Práctica</a>
+      <a href="#proyectos" data-i18n="nav4">Proyectos</a>
+      <a href="#contacto" data-i18n="nav5">Contacto</a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button data-lang="es" aria-pressed="true">ES</button><span class="sep">/</span><button data-lang="pt" aria-pressed="false">PT</button><span class="sep">/</span><button data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-eyebrow eyebrow" data-i18n="heroKicker">Diseñador · Córdoba, Argentina</div>
+      <h1><span data-i18n="heroLead">El diseño no termina en los objetos. También da forma a —</span><br><span class="cycle" aria-live="polite"><span class="word" data-i18n="cycle0">hábitos</span></span></h1>
+      <p class="hero-lede" data-i18n="heroLede">Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.</p>
+      <div class="scroll-hint" data-i18n="scroll">Ecodiseño Industrial Radikal</div>
+    </div>
+  </section>
+
+  <!-- ================= MANIFIESTO ================= -->
+  <section class="section manifiesto" id="manifiesto">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>01</span>
+        <span class="eyebrow"><span class="sec" data-i18n="nav1">Manifiesto</span></span>
+      </div>
+      <p class="reveal" data-i18n="man1">Diseño desde una conciencia de época: la de una civilización industrial que empieza a mostrar sus <em>límites</em>.</p>
+      <p class="reveal" data-i18n="man2">No busco resolver la crisis ecológica con <em>más producción</em>, sino repensar qué producimos, cómo y para qué.</p>
+      <div class="full reveal" data-i18n="manFull">Creo fervientemente en nuevas formas de hacer las cosas, poniendo por encima de todo el cuidado del medioambiente, su diversidad y su preservación. Hace tres años desarrollo un <button type='button' class='manifesto-link' data-open-reader>manifiesto de diseño</button> donde articulo esta mirada.</div>
+    </div>
+  </section>
+
+  <!-- ================= ENFOQUE ================= -->
+  <section class="section enfoque" id="enfoque">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>02</span>
+        <span class="eyebrow"><span class="sec" data-i18n="nav2">Enfoque</span> — <span data-i18n="enfoqueSub">tres miradas que se cruzan</span></span>
+      </div>
+      <div class="pillars reveal">
+        <article class="pillar">
+          <div class="p-mark">A</div>
+          <h3 data-i18n="pil1t">Innovación social</h3>
+          <p data-i18n="pil1d">Diseñar con y para las personas. Procesos que amplían capacidades colectivas antes que objetos que se acumulan.</p>
+        </article>
+        <article class="pillar">
+          <div class="p-mark">B</div>
+          <h3>Cradle to Cradle</h3>
+          <p data-i18n="pil2d">Nada es residuo. Cada material es un nutriente —biológico o técnico— que vuelve a circular. Diseñar también el después.</p>
+        </article>
+        <article class="pillar">
+          <div class="p-mark">C</div>
+          <h3 data-i18n="pil3t">Sustentabilidad</h3>
+          <p data-i18n="pil3d">No una promesa de más consumo verde, sino una manera de decidir qué merece ser producido y qué no —en este mundo que, muchos dicen, está colapsando.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRÁCTICA ================= -->
+  <section class="section practica" id="practica">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>03</span>
+        <span class="eyebrow"><span class="sec" data-i18n="nav3">Práctica</span></span>
+      </div>
+      <div class="rows reveal">
+        <div class="row">
+          <div class="yr">2026</div>
+          <div class="body">
+            <h4>Prêmio Salão Design °27</h4>
+            <p data-i18n="pr2d">Finalista seleccionado · Categoría Profesional · Brasil</p>
+          </div>
+          <div class="tag" data-i18n="pr2tag">Finalista</div>
+        </div>
+        <div class="row">
+          <div class="yr">2026 →</div>
+          <div class="body">
+            <h4>Dovis &amp; Federico</h4>
+            <p data-i18n="pr1d">Project Manager</p>
+          </div>
+          <div class="tag" data-i18n="pr1tag">En curso</div>
+        </div>
+        <div class="row">
+          <div class="yr">2024 – 2025</div>
+          <div class="body">
+            <h4>Prêmio Salão Design °26</h4>
+            <p data-i18n="pr4d">Finalista seleccionado · Categoría Estudiante · Brasil</p>
+          </div>
+          <div class="tag" data-i18n="pr4tag">Catálogo</div>
+        </div>
+        <div class="row">
+          <div class="yr">2024</div>
+          <div class="body">
+            <h4>Concurso METRAR</h4>
+            <p data-i18n="pr3d">Mención honorífica</p>
+          </div>
+          <div class="tag" data-i18n="pr3tag">Distinción</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PROYECTOS ================= -->
+  <section class="section proyectos" id="proyectos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>04</span>
+        <span class="eyebrow"><span class="sec" data-i18n="nav4">Proyectos</span> — <span data-i18n="proySub">selección</span></span>
+      </div>
+      <!-- ► CADA PROYECTO ES SU PROPIO CARRUSEL (apilados uno sobre otro).
+           Fotos en /fotos junto al HTML. Sumar imágenes: copiar un <div class="slide">.
+           Sumar proyecto: copiar un <article class="project"> entero. -->
+
+      <article class="project reveal">
+        <div class="project-head">
+          <b data-i18n="p1t">Sillón Capullo</b>
+          <span data-i18n="p1c">Objeto · 2025</span>
+        </div>
+        <div class="carousel">
+          <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
+            <div class="slide"><div class="slide-media"><img src="fotos/capullo-01.jpg" alt="capullo imagen 1" loading="lazy"><div class="slide-caption" data-i18n="p1desc"><span>Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/capullo-02.jpg" alt="capullo imagen 2" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/capullo-03.jpg" alt="capullo imagen 3" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/capullo-04.jpg" alt="capullo imagen 4" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/capullo-05.jpg" alt="capullo imagen 5" loading="lazy"></div></div>
+          </div></div>
+          <div class="c-ctrl">
+            <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
+            <span class="c-count"><b class="c-cur">01</b><span class="c-slash">/</span><span class="c-tot">05</span></span>
+            <button class="c-btn c-next" aria-label="Imagen siguiente">&rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-head">
+          <b data-i18n="p2t">Kit Cianoback</b>
+          <span data-i18n="p2c">Objeto · 2024</span>
+        </div>
+        <div class="carousel">
+          <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
+            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-01.jpg" alt="cianoback imagen 1" loading="lazy"><div class="slide-caption" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-02.jpg" alt="cianoback imagen 2" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-03.jpg" alt="cianoback imagen 3" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-04.jpg" alt="cianoback imagen 4" loading="lazy"></div></div>
+          </div></div>
+          <div class="c-ctrl">
+            <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
+            <span class="c-count"><b class="c-cur">01</b><span class="c-slash">/</span><span class="c-tot">04</span></span>
+            <button class="c-btn c-next" aria-label="Imagen siguiente">&rarr;</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="project-head">
+          <b data-i18n="p3t">Ordna</b>
+          <span data-i18n="p3c">Objeto · 2026</span>
+        </div>
+        <div class="carousel">
+          <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-01.jpg" alt="ordna imagen 1" loading="lazy"><div class="slide-caption" data-i18n="p3desc"><span>Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-02.jpg" alt="ordna imagen 2" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-03.jpg" alt="ordna imagen 3" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-04.jpg" alt="ordna imagen 4" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-05.jpg" alt="ordna imagen 5" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-06.jpg" alt="ordna imagen 6" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-07.jpg" alt="ordna imagen 7" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-08.jpg" alt="ordna imagen 8" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-09.jpg" alt="ordna imagen 9" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-10.jpg" alt="ordna imagen 10" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-11.jpg" alt="ordna imagen 11" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-12.jpg" alt="ordna imagen 12" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-13.jpg" alt="ordna imagen 13" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-14.jpg" alt="ordna imagen 14" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-15.jpg" alt="ordna imagen 15" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/ordna-16.jpg" alt="ordna imagen 16" loading="lazy"></div></div>
+          </div></div>
+          <div class="c-ctrl">
+            <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
+            <span class="c-count"><b class="c-cur">01</b><span class="c-slash">/</span><span class="c-tot">16</span></span>
+            <button class="c-btn c-next" aria-label="Imagen siguiente">&rarr;</button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section class="section contacto" id="contacto">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>05</span>
+        <span class="eyebrow"><span class="sec" data-i18n="nav5">Contacto</span></span>
+      </div>
+      <h2 class="cta-line reveal"><span data-i18n="ctaLead">Pensemos juntos qué producir,</span> <a class="cta-mail" href="mailto:olivadisenoind@gmail.com" data-i18n="ctaMail">y para qué.</a></h2>
+      <!-- ► Reemplazá el email de arriba (href="mailto:...") y los enlaces de abajo. -->
+      <div class="socials reveal">
+        <a href="mailto:olivadisenoind@gmail.com" data-i18n="soMail">olivadisenoind@gmail.com</a>
+        <a href="https://www.linkedin.com/in/mat%C3%ADas-oliva-gerik" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.behance.net/matiasoliva3" target="_blank" rel="noopener">Behance</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================= LECTOR DEL MANIFIESTO ================= -->
+<div class="reader" id="reader" aria-hidden="true">
+  <div class="reader-backdrop" data-close-reader></div>
+  <div class="reader-panel" role="dialog" aria-modal="true" aria-labelledby="readerTitle" tabindex="-1">
+    <div class="reader-top">
+      <span class="reader-eyebrow"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>01</span>
+      <span class="reader-title" id="readerTitle" data-mkey="title">Manifiesto de diseño</span>
+      <button class="reader-close" data-close-reader><span data-mkey="close">Cerrar</span> &times;</button>
+    </div>
+    <nav class="reader-chapters" id="readerChapters" aria-label="Capítulos"></nav>
+    <div class="reader-body" id="readerBody"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="yr"></span> Matías Oliva</span>
+    <span data-i18n="footNote">Diseño como acto cultural</span>
+    <span>Córdoba · AR</span>
+  </div>
+</footer>
+
+<script>
+  const I18N = {
+    es:{
+      role:"Diseñador · Project Manager",
+      nav1:"Manifiesto", nav2:"Enfoque", nav3:"Práctica", nav4:"Proyectos", nav5:"Contacto",
+      heroKicker:"Diseñador · Córdoba, Argentina",
+      heroLead:"El diseño no termina en los objetos. También da forma a —",
+      heroLede:"Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.",
+      scroll:"Ecodiseño Industrial Radikal",
+      man1:"Diseño desde una conciencia de época: la de una civilización industrial que empieza a mostrar sus <em>límites</em>.",
+      man2:"No busco resolver la crisis ecológica con <em>más producción</em>, sino repensar qué producimos, cómo y para qué.",
+      manFull:"Creo fervientemente en nuevas formas de hacer las cosas, poniendo por encima de todo el cuidado del medioambiente, su diversidad y su preservación. Hace tres años desarrollo un <button type='button' class='manifesto-link' data-open-reader>manifiesto de diseño</button> donde articulo esta mirada.",
+      enfoqueSub:"tres miradas que se cruzan",
+      pil1t:"Innovación social",
+      pil1d:"Diseñar con y para las personas. Procesos que amplían capacidades colectivas antes que objetos que se acumulan.",
+      pil2d:"Nada es residuo. Cada material es un nutriente —biológico o técnico— que vuelve a circular. Diseñar también el después.",
+      pil3t:"Sustentabilidad",
+      pil3d:"No una promesa de más consumo verde, sino una manera de decidir qué merece ser producido y qué no —en este mundo que, muchos dicen, está colapsando.",
+      pr1d:"Project Manager", pr1tag:"En curso",
+      pr2d:"Finalista seleccionado · Categoría Profesional · Brasil", pr2tag:"Finalista",
+      pr3d:"Mención honorífica", pr3tag:"Distinción",
+      pr4d:"Finalista seleccionado · Categoría Estudiante · Brasil", pr4tag:"Catálogo",
+      proySub:"selección",
+      phImg:"Tu imagen aquí",
+      p1t:"Sillón Capullo", p1c:"Objeto · 2025", p1desc:"Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.",
+      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.",
+      p3t:"Ordna", p3c:"Objeto · 2026", p3desc:"Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.",
+      p4t:"Proyecto cuatro", p4c:"Prototipo · 2023",
+      ctaLead:"Pensemos juntos qué producir,", ctaMail:"y para qué.",
+      soMail:"olivadisenoind@gmail.com",
+      footNote:"Diseño como acto cultural",
+      cycle:["hábitos","relaciones","valores","maneras de habitar"]
+    },
+    pt:{
+      role:"Designer · Project Manager",
+      nav1:"Manifesto", nav2:"Abordagem", nav3:"Prática", nav4:"Projetos", nav5:"Contato",
+      heroKicker:"Designer · Córdoba, Argentina",
+      heroLead:"O design não termina nos objetos. Também dá forma a —",
+      heroLede:"Entendo o designer como um fazedor cultural: alguém capaz de traduzir contextos, tensões e aspirações em novas formas de nos vincularmos entre todes, com o entorno e com o mundo natural que habitamos.",
+      scroll:"Ecodesign Industrial Radikal",
+      man1:"Projeto a partir de uma consciência de época: a de uma civilização industrial que começa a mostrar seus <em>limites</em>.",
+      man2:"Não busco resolver a crise ecológica com <em>mais produção</em>, mas repensar o que produzimos, como e para quê.",
+      manFull:"Acredito fervorosamente em novas formas de fazer as coisas, colocando acima de tudo o cuidado com o meio ambiente, sua diversidade e sua preservação. Há três anos desenvolvo um <button type='button' class='manifesto-link' data-open-reader>manifesto de design</button> onde articulo esse olhar.",
+      enfoqueSub:"três olhares que se cruzam",
+      pil1t:"Inovação social",
+      pil1d:"Projetar com e para as pessoas. Processos que ampliam capacidades coletivas antes que objetos que se acumulam.",
+      pil2d:"Nada é resíduo. Cada material é um nutriente —biológico ou técnico— que volta a circular. Projetar também o depois.",
+      pil3t:"Sustentabilidade",
+      pil3d:"Não uma promessa de mais consumo verde, mas uma maneira de decidir o que merece ser produzido e o que não —neste mundo que, muitos dizem, está entrando em colapso.",
+      pr1d:"Project Manager", pr1tag:"Em curso",
+      pr2d:"Finalista selecionado · Categoria Profissional · Brasil", pr2tag:"Finalista",
+      pr3d:"Menção honrosa", pr3tag:"Distinção",
+      pr4d:"Finalista selecionado · Categoria Estudante · Brasil", pr4tag:"Catálogo",
+      proySub:"seleção",
+      phImg:"Sua imagem aqui",
+      p1t:"Poltrona Casulo", p1c:"Objeto · 2025", p1desc:"Design de mobiliário experimental desenvolvido a partir da reutilização de descartes têxteis. Sua silhueta envolvente propõe uma experiência diferencial e transforma esses resíduos em uma nova oportunidade material, funcional e expressiva.",
+      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de baixo custo que adapta maquinário de drenagem existente para coletar cianobactérias com maior eficiência, menor consumo energético e maior concentração do resíduo, facilitando sua incorporação em novos ciclos produtivos, como a geração de biogás.",
+      p3t:"Ordna", p3c:"Objeto · 2026", p3desc:"Sistema modular para a gestão de resíduos urbanos que atua como facilitador relacional entre pessoas, lixo, lar e comunidade. Facilita a separação na origem, promove hábitos responsáveis, lembra horários de coleta, favorece a integração de esquemas de classificação segundo cada comunidade e de catadores formais e informais nos circuitos de coleta urbana.",
+      p4t:"Projeto quatro", p4c:"Protótipo · 2023",
+      ctaLead:"Vamos pensar juntos o que produzir,", ctaMail:"e para quê.",
+      soMail:"olivadisenoind@gmail.com",
+      footNote:"Design como ato cultural",
+      cycle:["hábitos","relações","valores","maneiras de habitar"]
+    },
+    en:{
+      role:"Designer · Project Manager",
+      nav1:"Manifesto", nav2:"Approach", nav3:"Practice", nav4:"Projects", nav5:"Contact",
+      heroKicker:"Designer · Córdoba, Argentina",
+      heroLead:"Design doesn't end with objects. It also gives form to —",
+      heroLede:"I understand the designer as a cultural maker: someone able to translate contexts, tensions, and aspirations into new ways of relating to one another, to our surroundings, and to the natural world we inhabit.",
+      scroll:"Radical Industrial Ecodesign",
+      man1:"I design from an awareness of our era: that of an industrial civilization beginning to show its <em>limits</em>.",
+      man2:"I don't try to solve the ecological crisis with <em>more production</em>, but to rethink what we produce, how, and what for.",
+      manFull:"I firmly believe in new ways of making things, placing the care of the environment, its diversity, and its preservation above all else. For three years I have been developing a <button type='button' class='manifesto-link' data-open-reader>design manifesto</button> where I articulate this view.",
+      enfoqueSub:"three views that cross",
+      pil1t:"Social innovation",
+      pil1d:"Designing with and for people. Processes that expand collective capacities rather than objects that pile up.",
+      pil2d:"Nothing is waste. Every material is a nutrient —biological or technical— that circulates again. Designing the afterward, too.",
+      pil3t:"Sustainability",
+      pil3d:"Not a promise of more green consumption, but a way to decide what deserves to be produced and what does not —in this world that, many say, is collapsing.",
+      pr1d:"Project Manager", pr1tag:"Ongoing",
+      pr2d:"Selected finalist · Professional category · Brazil", pr2tag:"Finalist",
+      pr3d:"Honorable mention", pr3tag:"Distinction",
+      pr4d:"Selected finalist · Student category · Brazil", pr4tag:"Catalogue",
+      proySub:"selection",
+      phImg:"Your image here",
+      p1t:"Cocoon Armchair", p1c:"Object · 2025", p1desc:"Experimental furniture design developed from the reuse of textile waste. Its enveloping silhouette proposes a distinctive experience and transforms these discards into a new material, functional, and expressive opportunity.",
+      p2t:"Cianoback Kit", p2c:"Object · 2024", p2desc:"A low-cost system that adapts existing drainage machinery to collect cyanobacteria with greater efficiency, lower energy consumption, and higher residue concentration — enabling its incorporation into new productive cycles, such as biogas generation.",
+      p3t:"Ordna", p3c:"Object · 2026", p3desc:"A modular system for urban waste management that acts as a relational enabler among people, waste, home, and community. It supports source separation, fosters responsible habits, reminds of collection schedules, and helps integrate community-specific sorting schemes and both formal and informal collectors into urban collection circuits.",
+      p4t:"Project four", p4c:"Prototype · 2023",
+      ctaLead:"Let's think together about what to produce,", ctaMail:"and what for.",
+      soMail:"olivadisenoind@gmail.com",
+      footNote:"Design as a cultural act",
+      cycle:["habits","relationships","values","ways of inhabiting"]
+    }
+  };
+
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ACCENT = { es:["#3A46FF","#6B74FF"], pt:["#FF5A1F","#FF7C4D"], en:["#2FB84B","#55D06E"] };
+  let current = "es";
+  let cycleIdx = 0;
+  let cycleTimer = null;
+
+  function applyLang(lang){
+    current = lang;
+    const dict = I18N[lang];
+    document.documentElement.lang = lang;
+    const [a1,a2] = ACCENT[lang] || ACCENT.es;
+    document.documentElement.style.setProperty("--ultra", a1);
+    document.documentElement.style.setProperty("--ultra-2", a2);
+    document.querySelectorAll("[data-i18n]").forEach(el=>{
+      const key = el.getAttribute("data-i18n");
+      if(key === "cycle0"){ el.textContent = dict.cycle[cycleIdx % dict.cycle.length]; return; }
+      if(dict[key] !== undefined){
+        el.innerHTML = /desc$/.test(key) ? ("<span>"+dict[key]+"</span>") : dict[key];
+      }
+    });
+    document.querySelectorAll(".lang button").forEach(b=>{
+      b.setAttribute("aria-pressed", b.dataset.lang === lang ? "true":"false");
+    });
+    if(typeof renderReader === "function" && readerEl && readerEl.classList.contains("open")) renderReader();
+  }
+
+  // language switching
+  document.querySelectorAll(".lang button").forEach(btn=>{
+    btn.addEventListener("click", ()=> applyLang(btn.dataset.lang));
+  });
+
+  // hero word cycle
+  const cycleEl = document.querySelector(".cycle .word");
+  function stepCycle(){
+    const words = I18N[current].cycle;
+    cycleIdx = (cycleIdx + 1) % words.length;
+    cycleEl.style.opacity = 0;
+    setTimeout(()=>{
+      cycleEl.textContent = words[cycleIdx];
+      cycleEl.style.opacity = 1;
+    }, 260);
+  }
+  cycleEl.style.transition = "opacity .26s ease";
+  if(!reduceMotion){ cycleTimer = setInterval(stepCycle, 2200); }
+
+  // scroll reveal
+  if(!reduceMotion && "IntersectionObserver" in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:0.12});
+    document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+  } else {
+    document.querySelectorAll(".reveal").forEach(el=>el.classList.add("in"));
+  }
+
+  // hide placeholder in a slide only when its <img> has a real src
+  document.querySelectorAll(".slide-media").forEach(m=>{
+    const img = m.querySelector("img");
+    if(img && img.getAttribute("src")){ const ph = m.querySelector(".ph"); if(ph) ph.style.display="none"; }
+  });
+
+  // ---- carruseles de proyectos (circulares, uno por proyecto) ----
+  document.querySelectorAll(".carousel").forEach(car=>{
+    const track = car.querySelector(".c-track");
+    if(!track) return;
+    const project = car.closest(".project");
+    const originals = Array.from(track.querySelectorAll(".slide"));
+    const total = originals.length;
+    if(!total) return;
+    const curEl = car.querySelector(".c-cur");
+    const totEl = car.querySelector(".c-tot");
+    const pad = n => String(n).padStart(2,"0");
+    if(totEl) totEl.textContent = pad(total);
+
+    // --- estructura: .c-track (overflow hidden) > .c-rail (se mueve con transform) ---
+    const rail = document.createElement("div");
+    rail.className = "c-rail";
+    originals.forEach(s => rail.appendChild(s));
+    track.appendChild(rail);
+
+    // --- clones a ambos lados para circularidad real ---
+    const loop = total > 1;
+    if(loop){
+      const before = document.createDocumentFragment();
+      const after  = document.createDocumentFragment();
+      originals.forEach(s=>{
+        [before, after].forEach(frag=>{
+          const c = s.cloneNode(true);
+          c.setAttribute("data-clone","1");
+          c.setAttribute("aria-hidden","true");
+          const cap = c.querySelector(".slide-caption"); // la descripción vive solo en el original
+          if(cap) cap.remove();
+          frag.appendChild(c);
+        });
+      });
+      rail.insertBefore(before, originals[0]);
+      rail.appendChild(after);
+    }
+
+    const BASE = loop ? total : 0;   // posición del slide real 0 dentro del rail
+    let cur = BASE;                  // puntero actual (puede caer en zona clon)
+    let dragging = false, startX = 0, startTx = 0, curTx = 0;
+
+    const metrics = () => {
+      const first = rail.children[0];
+      const slideW = first.getBoundingClientRect().width;
+      const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+      return { slideW, step: slideW + gap, trackW: track.clientWidth };
+    };
+    const txFor = (idx) => {
+      const { slideW, step, trackW } = metrics();
+      return (trackW - slideW) / 2 - idx * step;   // centra el slide idx
+    };
+    const setTx = (px, animate) => {
+      curTx = px;
+      rail.style.transition = animate ? "transform .5s cubic-bezier(.4,.01,.2,1)" : "none";
+      rail.style.transform = `translate3d(${px}px,0,0)`;
+    };
+    const realIndex = () => ((cur - BASE) % total + total) % total;
+    const refresh = () => {
+      if(curEl) curEl.textContent = pad(realIndex() + 1);
+      // la descripción se muestra siempre que la imagen 01 esté centrada
+      if(project) project.classList.toggle("show-caption", realIndex() === 0);
+    };
+
+    // salto invisible: si quedamos en zona clon, reubicar al equivalente real SIN animación
+    const normalize = () => {
+      if(!loop) return;
+      if(cur < BASE || cur >= BASE + total){
+        cur = BASE + realIndex();
+        setTx(txFor(cur), false);
+        void rail.offsetWidth; // forzar reflow para que la próxima animación funcione
+      }
+    };
+    rail.addEventListener("transitionend", e=>{
+      if(e.propertyName === "transform") normalize();
+    });
+
+    const go = (delta) => {
+      if(!loop){ cur = Math.max(0, Math.min(total-1, cur + delta)); }
+      else { cur += delta; }
+      setTx(txFor(cur), true);
+      refresh();
+    };
+
+    // --- controles ---
+    const prev = car.querySelector(".c-prev"), next = car.querySelector(".c-next");
+    if(prev) prev.addEventListener("click", ()=> go(-1));
+    if(next) next.addEventListener("click", ()=> go(1));
+    track.setAttribute("tabindex","0");
+    track.addEventListener("keydown", e=>{
+      if(e.key === "ArrowLeft"){ e.preventDefault(); go(-1); }
+      if(e.key === "ArrowRight"){ e.preventDefault(); go(1); }
+    });
+
+    // --- arrastre con mouse / dedo ---
+    track.addEventListener("pointerdown", e=>{
+      if(e.pointerType === "mouse" && e.button !== 0) return;
+      dragging = true; startX = e.clientX; startTx = curTx;
+      rail.style.transition = "none";
+      track.setPointerCapture(e.pointerId);
+      track.classList.add("dragging");
+    });
+    track.addEventListener("pointermove", e=>{
+      if(!dragging) return;
+      setTx(startTx + (e.clientX - startX), false);
+    });
+    const endDrag = (e)=>{
+      if(!dragging) return;
+      dragging = false;
+      track.classList.remove("dragging");
+      const { step } = metrics();
+      const moved = curTx - startTx;
+      // umbral: 18% del ancho de un slide decide el cambio
+      if(Math.abs(moved) > step * 0.18){
+        go(moved < 0 ? 1 : -1);
+      } else {
+        setTx(txFor(cur), true);   // volver al lugar
+      }
+    };
+    track.addEventListener("pointerup", endDrag);
+    track.addEventListener("pointercancel", endDrag);
+
+    // --- posición inicial y resize ---
+    const place = () => { setTx(txFor(cur), false); refresh(); };
+    place();
+    if(document.readyState !== "complete") window.addEventListener("load", place, { once:true });
+    let rz; window.addEventListener("resize", ()=>{ clearTimeout(rz); rz = setTimeout(place, 120); });
+  });
+
+  /* ============================================================
+     MANIFIESTO — contenido por capítulos (editable).
+     · Para publicar un capítulo: poné ready:true y escribí su "name" y "body".
+     · body admite <p>…</p>, <p class="lead">…</p> para destacar, y <em>…</em>.
+     · Mientras ready:false, el capítulo se muestra como "En preparación".
+     ============================================================ */
+  const MANIFESTO = {
+    es:{
+      title:"Manifiesto de diseño", close:"Cerrar", chapterWord:"Capítulo",
+      soon:"En preparación", soonNote:"Este capítulo se está escribiendo. Volvé pronto para leerlo.",
+      chapters:[
+        { id:"1", label:"I", ready:true, name:"El diseñador como hacedor cultural", body:`
+          <p class="lead">El diseñador es un hacedor cultural: no solo da forma a objetos, sino a hábitos, valores y maneras de habitar el mundo.</p>
+          <p>Diseño desde una conciencia de época —la de una civilización industrial que empieza a mostrar sus límites— y creo en nuevas formas de hacer las cosas, poniendo por encima de todo el cuidado del medioambiente, su diversidad y su preservación.</p>
+          <p>No busco resolver la crisis ecológica con más producción, sino ayudar a repensar <em>qué producimos, cómo y para qué</em>.</p>` },
+        { id:"2", label:"II", ready:false, name:"" },
+        { id:"3", label:"III", ready:false, name:"" },
+        { id:"4", label:"IV", ready:false, name:"" },
+        { id:"bis", label:"Bis · Conclusiones", ready:false, name:"" }
+      ]
+    },
+    pt:{
+      title:"Manifesto de design", close:"Fechar", chapterWord:"Capítulo",
+      soon:"Em preparação", soonNote:"Este capítulo está sendo escrito. Volte em breve para lê-lo.",
+      chapters:[
+        { id:"1", label:"I", ready:true, name:"O designer como fazedor cultural", body:`
+          <p class="lead">O designer é um fazedor cultural: não dá forma apenas a objetos, mas a hábitos, valores e maneiras de habitar o mundo.</p>
+          <p>Projeto a partir de uma consciência de época —a de uma civilização industrial que começa a mostrar seus limites— e acredito em novas formas de fazer as coisas, colocando acima de tudo o cuidado com o meio ambiente, sua diversidade e sua preservação.</p>
+          <p>Não busco resolver a crise ecológica com mais produção, mas ajudar a repensar <em>o que produzimos, como e para quê</em>.</p>` },
+        { id:"2", label:"II", ready:false, name:"" },
+        { id:"3", label:"III", ready:false, name:"" },
+        { id:"4", label:"IV", ready:false, name:"" },
+        { id:"bis", label:"Bis · Conclusões", ready:false, name:"" }
+      ]
+    },
+    en:{
+      title:"Design manifesto", close:"Close", chapterWord:"Chapter",
+      soon:"In preparation", soonNote:"This chapter is being written. Check back soon.",
+      chapters:[
+        { id:"1", label:"I", ready:true, name:"The designer as a cultural maker", body:`
+          <p class="lead">The designer is a cultural maker: giving form not only to objects, but to habits, values, and ways of inhabiting the world.</p>
+          <p>I design from an awareness of our era —that of an industrial civilization beginning to show its limits— and I believe in new ways of making things, placing the care of the environment, its diversity, and its preservation above all else.</p>
+          <p>I don't try to solve the ecological crisis with more production, but to help rethink <em>what we produce, how, and what for</em>.</p>` },
+        { id:"2", label:"II", ready:false, name:"" },
+        { id:"3", label:"III", ready:false, name:"" },
+        { id:"4", label:"IV", ready:false, name:"" },
+        { id:"bis", label:"Bis · Conclusions", ready:false, name:"" }
+      ]
+    }
+  };
+
+  const readerEl = document.getElementById("reader");
+  const readerBody = document.getElementById("readerBody");
+  const readerChapters = document.getElementById("readerChapters");
+  let currentChap = "1";
+  let lastFocus = null;
+
+  function renderReader(){
+    const m = MANIFESTO[current] || MANIFESTO.es;
+    readerEl.querySelectorAll("[data-mkey]").forEach(el=>{
+      const k = el.getAttribute("data-mkey");
+      if(m[k] !== undefined) el.textContent = m[k];
+    });
+    if(!m.chapters.some(c=>c.id===currentChap)) currentChap = m.chapters[0].id;
+    readerChapters.innerHTML = "";
+    m.chapters.forEach(ch=>{
+      const b = document.createElement("button");
+      b.type = "button";
+      b.textContent = ch.label;
+      b.setAttribute("data-chap", ch.id);
+      if(ch.id === currentChap) b.classList.add("active");
+      b.addEventListener("click", ()=>{ currentChap = ch.id; renderChapterBody(); });
+      readerChapters.appendChild(b);
+    });
+    renderChapterBody();
+  }
+  function renderChapterBody(){
+    const m = MANIFESTO[current] || MANIFESTO.es;
+    const ch = m.chapters.find(c=>c.id===currentChap) || m.chapters[0];
+    readerChapters.querySelectorAll("button").forEach(b=>
+      b.classList.toggle("active", b.getAttribute("data-chap")===currentChap));
+    if(ch.ready){
+      readerBody.innerHTML = `<span class="chap-kicker">${m.chapterWord} ${ch.label}</span><h3>${ch.name}</h3>${ch.body}`;
+    } else {
+      readerBody.innerHTML = `<div class="soon"><span class="badge">${m.soon}</span><p>${m.soonNote}</p></div>`;
+    }
+    readerBody.scrollTop = 0;
+  }
+  function openReader(){
+    lastFocus = document.activeElement;
+    renderReader();
+    readerEl.classList.add("open");
+    readerEl.setAttribute("aria-hidden","false");
+    document.body.classList.add("reader-open");
+    readerEl.querySelector(".reader-panel").focus();
+  }
+  function closeReader(){
+    readerEl.classList.remove("open");
+    readerEl.setAttribute("aria-hidden","true");
+    document.body.classList.remove("reader-open");
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener("click", e=>{
+    if(e.target.closest("[data-open-reader]")){ e.preventDefault(); openReader(); }
+    else if(e.target.closest("[data-close-reader]")){ closeReader(); }
+  });
+  document.addEventListener("keydown", e=>{
+    if(e.key==="Escape" && readerEl.classList.contains("open")) closeReader();
+  });
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  applyLang("es");
+</script>
+</body>
+</html>
