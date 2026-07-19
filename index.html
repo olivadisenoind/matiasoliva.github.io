@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Matías Oliva — Diseño / Design</title>
+<title>Matías Oliva — EcoDiseño Radikal</title>
 <meta name="description" content="Diseño industrial como hacedor cultural. Transformar tensiones o aspiraciones en nuevas formas de vincularnos entre nosotros y con el entorno." />
 <meta name="author" content="Matías Oliva" />
 <link rel="canonical" href="https://radikalecodesign.com/" />
 
 <!-- Vista previa al compartir el enlace (WhatsApp, LinkedIn, Facebook, etc.) -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Matías Oliva" />
+<meta property="og:site_name" content="EcoDiseño Radikal" />
 <meta property="og:url" content="https://radikalecodesign.com/" />
-<meta property="og:title" content="Matías Oliva — Diseño / Design" />
+<meta property="og:title" content="Matías Oliva" />
 <meta property="og:description" content="Diseño industrial como hacedor cultural. Transformar tensiones o aspiraciones en nuevas formas de vincularnos entre nosotros y con el entorno." />
 <meta property="og:image" content="https://radikalecodesign.com/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
@@ -24,7 +24,7 @@
 
 <!-- Vista previa en X / Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Matías Oliva — Diseño / Design" />
+<meta name="twitter:title" content="Matías Oliva — EcoDiseño Radikal" />
 <meta name="twitter:description" content="Diseño industrial como hacedor cultural. Transformar tensiones o aspiraciones en nuevas formas de vincularnos entre nosotros y con el entorno." />
 <meta name="twitter:image" content="https://radikalecodesign.com/og-image.jpg" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -267,6 +267,7 @@
   @keyframes lbIn{from{opacity:0}to{opacity:1}}
   @media(prefers-reduced-motion:reduce){ .lightbox{animation:none} }
   .lightbox[hidden]{display:none}
+  .lightbox.vv{inset:auto;left:0;top:0;transform-origin:0 0}
   body.lb-open{overflow:hidden;touch-action:none}
 
   .lb-bar{
@@ -322,6 +323,7 @@
   @media(max-width:640px){ .lb-hint{font-size:.56rem;letter-spacing:.08em} .lb-title{display:none} }
 
   /* la foto del carrusel invita a abrirse */
+  .c-rail,.slide,.slide-media,.slide-media img{touch-action:pan-y}
   .slide-media{cursor:zoom-in}
   .c-track.dragging .slide-media{cursor:grabbing}
   .slide-media::after{
@@ -1302,14 +1304,42 @@
       btnPrev.hidden = solo; btnNext.hidden = solo;
     }
 
+    // --- anclaje al viewport visual (si la página quedó con zoom del navegador,
+    //     un position:fixed se dibuja contra el viewport de layout y queda corrido) ---
+    const vv = window.visualViewport;
+    const vpMeta = document.querySelector('meta[name="viewport"]');
+    const VP_BASE = vpMeta ? vpMeta.getAttribute("content") : null;
+
+    function resetPageZoom(){
+      if(!vpMeta || !VP_BASE) return;
+      vpMeta.setAttribute("content", VP_BASE + ", maximum-scale=1, user-scalable=no");
+      setTimeout(()=>{ vpMeta.setAttribute("content", VP_BASE); }, 350);
+    }
+    function fitViewport(){
+      if(box.hidden) return;
+      if(!vv){ box.classList.remove("vv"); box.style.cssText = ""; return; }
+      box.classList.add("vv");
+      box.style.width  = vv.width + "px";
+      box.style.height = vv.height + "px";
+      box.style.transform = "translate(" + vv.offsetLeft + "px," + vv.offsetTop + "px)";
+      clampPan(); apply(false);
+    }
+    if(vv){
+      vv.addEventListener("resize", fitViewport);
+      vv.addEventListener("scroll", fitViewport);
+    }
+
     openLightbox = function(images, start, title){
       if(!images || !images.length) return;
       list = images;
       clearGesture();
+      resetPageZoom();
       lastFocus = document.activeElement;
       titleEl.textContent = title || "";
       box.hidden = false;
       document.body.classList.add("lb-open");
+      fitViewport();
+      requestAnimationFrame(fitViewport);
       show(start || 0);
       box.querySelector(".lb-close").focus({preventScroll:true});
     };
@@ -1317,6 +1347,9 @@
       if(box.hidden) return;
       box.hidden = true;
       clearGesture();
+      box.classList.remove("vv");
+      box.style.width = box.style.height = box.style.transform = "";
+      resetPageZoom();
       document.body.classList.remove("lb-open");
       img.removeAttribute("src");
       if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
