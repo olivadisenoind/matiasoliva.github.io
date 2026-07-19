@@ -256,6 +256,82 @@
   .c-count b{color:var(--bone);font-weight:700}
   .c-slash{color:var(--line);margin:0 0.2rem}
 
+  /* ---------- VISOR A PANTALLA COMPLETA (zoom) ---------- */
+  .lightbox{
+    position:fixed;inset:0;z-index:120;
+    background:rgba(12,13,9,0.96);
+    display:flex;flex-direction:column;
+    animation:lbIn .28s ease;
+    touch-action:none;
+  }
+  @keyframes lbIn{from{opacity:0}to{opacity:1}}
+  @media(prefers-reduced-motion:reduce){ .lightbox{animation:none} }
+  .lightbox[hidden]{display:none}
+  body.lb-open{overflow:hidden}
+
+  .lb-bar{
+    position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:.9rem clamp(.8rem,2.5vw,1.6rem);border-bottom:1px solid var(--line);
+  }
+  .lb-count{font-family:var(--font-mono);font-size:.78rem;letter-spacing:.14em;color:var(--bone-dim)}
+  .lb-count b{color:var(--bone);font-weight:700}
+  .lb-title{
+    font-family:var(--font-mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--bone-dim);flex:1;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .lb-tools{display:flex;align-items:center;gap:.5rem}
+  .lb-zoom{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;color:var(--bone-dim);min-width:3.6em;text-align:center}
+  .lb-btn{
+    width:2.4rem;height:2.4rem;border:1px solid var(--line);background:none;color:var(--bone);
+    font-size:1rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    border-radius:50%;transition:border-color .2s,color .2s;font-family:var(--font-mono);
+  }
+  .lb-btn:hover{border-color:var(--ultra);color:var(--ultra-2)}
+  .lb-btn:disabled{opacity:.35;cursor:default;border-color:var(--line);color:var(--bone-dim)}
+
+  .lb-stage{
+    position:relative;flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;
+    cursor:zoom-in;
+  }
+  .lb-stage.zoomed{cursor:grab}
+  .lb-stage.panning{cursor:grabbing}
+  .lb-stage img{
+    max-width:100%;max-height:100%;width:auto;height:auto;display:block;
+    user-select:none;-webkit-user-drag:none;
+    transform-origin:center center;will-change:transform;
+  }
+  .lb-stage img.eased{transition:transform .3s cubic-bezier(.4,.01,.2,1)}
+
+  .lb-nav{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:3;
+    width:3rem;height:3rem;border-radius:50%;border:1px solid var(--line);
+    background:rgba(20,21,15,.6);backdrop-filter:blur(8px);
+    color:var(--bone);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:border-color .2s,color .2s;
+  }
+  .lb-nav:hover{border-color:var(--ultra);color:var(--ultra-2)}
+  .lb-prev{left:clamp(.6rem,2vw,1.6rem)}
+  .lb-next{right:clamp(.6rem,2vw,1.6rem)}
+
+  .lb-hint{
+    position:relative;z-index:3;text-align:center;padding:.8rem 1rem 1.1rem;
+    font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--bone-dim);border-top:1px solid var(--line);
+  }
+  @media(max-width:640px){ .lb-hint{font-size:.56rem;letter-spacing:.08em} .lb-title{display:none} }
+
+  /* la foto del carrusel invita a abrirse */
+  .slide-media{cursor:zoom-in}
+  .c-track.dragging .slide-media{cursor:grabbing}
+  .slide-media::after{
+    content:"";position:absolute;top:.7rem;right:.7rem;z-index:4;width:1.9rem;height:1.9rem;
+    border:1px solid var(--line);border-radius:50%;background:rgba(20,21,15,.55);
+    backdrop-filter:blur(6px);opacity:0;transition:opacity .3s;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EFEBDE' stroke-width='1.6' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='M15.5 15.5 20 20M10.5 7.5v6M7.5 10.5h6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:center;background-size:1.05rem;
+  }
+  .slide-media:hover::after{opacity:1}
+
   /* ---------- PROYECTOS · GRILLA DE CARDS ---------- */
   .proj-grid{
     display:grid;
@@ -841,6 +917,7 @@
       pr4d:"Finalista seleccionado · Categoría Estudiante · Brasil", pr4tag:"Catálogo",
       proySub:"selección",
       cardCta:"Ver proyecto", cardClose:"Cerrar", cardImgs:"imágenes",
+      lbHint:"Rueda o pellizcá para hacer zoom · arrastrá para mover · doble clic para acercar · Esc para salir",
       soonT:"Proyecto 04", soonC:"Próximamente · 2026", soonTag:"En desarrollo", soonCta:"En taller",
       soonDesc:"Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.",
 
@@ -876,6 +953,7 @@
       pr4d:"Finalista selecionado · Categoria Estudante · Brasil", pr4tag:"Catálogo",
       proySub:"seleção",
       cardCta:"Ver projeto", cardClose:"Fechar", cardImgs:"imagens",
+      lbHint:"Role ou pince para dar zoom · arraste para mover · duplo clique para aproximar · Esc para sair",
       soonT:"Projeto 04", soonC:"Em breve · 2026", soonTag:"Em desenvolvimento", soonCta:"No ateliê",
       soonDesc:"Um novo projeto está em processo no ateliê. Volte em breve para vê-lo publicado aqui.",
 
@@ -911,6 +989,7 @@
       pr4d:"Selected finalist · Student category · Brazil", pr4tag:"Catalogue",
       proySub:"selection",
       cardCta:"View project", cardClose:"Close", cardImgs:"images",
+      lbHint:"Scroll or pinch to zoom · drag to move · double-click to zoom in · Esc to exit",
       soonT:"Project 04", soonC:"Coming soon · 2026", soonTag:"In development", soonCta:"In the studio",
       soonDesc:"A new project is currently in the works. Come back soon to see it published here.",
 
@@ -996,6 +1075,12 @@
     const originals = Array.from(track.querySelectorAll(".slide"));
     const total = originals.length;
     if(!total) return;
+    originals.forEach((s,i)=>{ s.dataset.idx = i; });
+    const IMGS = originals.map(s=>{
+      const im = s.querySelector("img");
+      return im ? { src: im.getAttribute("src"), alt: im.getAttribute("alt") || "" } : null;
+    }).filter(Boolean);
+    car.__images = IMGS;
     const curEl = car.querySelector(".c-cur");
     const totEl = car.querySelector(".c-tot");
     const pad = n => String(n).padStart(2,"0");
@@ -1083,8 +1168,11 @@
     });
 
     // --- arrastre con mouse / dedo ---
+    let pressSlide = null, pressY = 0, pressT = 0;
     track.addEventListener("pointerdown", e=>{
       if(e.pointerType === "mouse" && e.button !== 0) return;
+      pressSlide = e.target.closest ? e.target.closest(".slide") : null;
+      pressY = e.clientY; pressT = Date.now();
       dragging = true; startX = e.clientX; startTx = curTx;
       rail.style.transition = "none";
       track.setPointerCapture(e.pointerId);
@@ -1100,12 +1188,20 @@
       track.classList.remove("dragging");
       const { step } = metrics();
       const moved = curTx - startTx;
+      const dy = e && e.clientY !== undefined ? Math.abs(e.clientY - pressY) : 0;
+      const isTap = Math.abs(moved) < 8 && dy < 8 && (Date.now() - pressT) < 600;
       // umbral: 18% del ancho de un slide decide el cambio
       if(Math.abs(moved) > step * 0.18){
         go(moved < 0 ? 1 : -1);
       } else {
         setTx(txFor(cur), true);   // volver al lugar
+        if(isTap && pressSlide && typeof openLightbox === "function"){
+          const idx = parseInt(pressSlide.dataset.idx, 10);
+          const head = car.closest(".project") && car.closest(".project").querySelector(".project-head b");
+          openLightbox(IMGS, isNaN(idx) ? realIndex() : idx, head ? head.textContent : "");
+        }
       }
+      pressSlide = null;
     };
     track.addEventListener("pointerup", endDrag);
     track.addEventListener("pointercancel", endDrag);
@@ -1117,6 +1213,155 @@
     if(document.readyState !== "complete") window.addEventListener("load", place, { once:true });
     let rz; window.addEventListener("resize", ()=>{ clearTimeout(rz); rz = setTimeout(place, 120); });
   });
+
+  /* ============================================================
+     VISOR A PANTALLA COMPLETA — zoom con rueda, pellizco,
+     doble clic y botones; arrastre para desplazar; ←/→ cambia foto.
+     ============================================================ */
+  let openLightbox = null;
+  (function(){
+    const box   = document.getElementById("lightbox");
+    const stage = document.getElementById("lbStage");
+    const img   = document.getElementById("lbImg");
+    if(!box || !stage || !img) return;
+    const curEl = box.querySelector(".lb-cur");
+    const totEl = box.querySelector(".lb-tot");
+    const zoomEl= box.querySelector(".lb-zoom");
+    const titleEl = document.getElementById("lbTitle");
+    const btnPrev = box.querySelector(".lb-prev");
+    const btnNext = box.querySelector(".lb-next");
+    const pad = n => String(n).padStart(2,"0");
+
+    const MIN = 1, MAX = 6;
+    let list = [], idx = 0, k = 1, tx = 0, ty = 0, lastFocus = null;
+    const pointers = new Map();
+    let pinchDist = 0, pinchK = 1, panning = false, panX = 0, panY = 0, moved = 0;
+
+    function apply(eased){
+      img.classList.toggle("eased", !!eased);
+      img.style.transform = `translate(${tx}px,${ty}px) scale(${k})`;
+      stage.classList.toggle("zoomed", k > 1.01);
+      zoomEl.textContent = Math.round(k * 100) + "%";
+    }
+    function clampPan(){
+      const s = stage.getBoundingClientRect();
+      const w = img.clientWidth * k, h = img.clientHeight * k;
+      const mx = Math.max(0, (w - s.width) / 2), my = Math.max(0, (h - s.height) / 2);
+      tx = Math.min(mx, Math.max(-mx, tx));
+      ty = Math.min(my, Math.max(-my, ty));
+    }
+    function zoomAt(nk, cx, cy, eased){
+      nk = Math.min(MAX, Math.max(MIN, nk));
+      const s = stage.getBoundingClientRect();
+      const px = (cx === undefined ? s.width/2 : cx) - s.left - s.width/2;
+      const py = (cy === undefined ? s.height/2 : cy) - s.top - s.height/2;
+      tx = px - (px - tx) * (nk / k);
+      ty = py - (py - ty) * (nk / k);
+      k = nk;
+      if(k <= 1.001){ k = 1; tx = 0; ty = 0; }
+      clampPan(); apply(eased);
+    }
+    function reset(){ k = 1; tx = 0; ty = 0; apply(false); }
+
+    function show(i, eased){
+      idx = (i % list.length + list.length) % list.length;
+      img.src = list[idx].src;
+      img.alt = list[idx].alt;
+      curEl.textContent = pad(idx + 1);
+      totEl.textContent = pad(list.length);
+      reset();
+      const solo = list.length < 2;
+      btnPrev.hidden = solo; btnNext.hidden = solo;
+    }
+
+    openLightbox = function(images, start, title){
+      if(!images || !images.length) return;
+      list = images;
+      lastFocus = document.activeElement;
+      titleEl.textContent = title || "";
+      box.hidden = false;
+      document.body.classList.add("lb-open");
+      show(start || 0);
+      box.querySelector(".lb-close").focus({preventScroll:true});
+    };
+    function close(){
+      if(box.hidden) return;
+      box.hidden = true;
+      document.body.classList.remove("lb-open");
+      img.removeAttribute("src");
+      if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
+    }
+
+    box.querySelector(".lb-close").addEventListener("click", close);
+    box.querySelector(".lb-zin").addEventListener("click", ()=> zoomAt(k * 1.5, undefined, undefined, true));
+    box.querySelector(".lb-zout").addEventListener("click", ()=> zoomAt(k / 1.5, undefined, undefined, true));
+    btnPrev.addEventListener("click", e=>{ e.stopPropagation(); show(idx - 1); });
+    btnNext.addEventListener("click", e=>{ e.stopPropagation(); show(idx + 1); });
+
+    stage.addEventListener("wheel", e=>{
+      e.preventDefault();
+      zoomAt(k * (e.deltaY < 0 ? 1.16 : 1/1.16), e.clientX, e.clientY, false);
+    }, {passive:false});
+
+    stage.addEventListener("dblclick", e=>{
+      if(e.target.closest(".lb-nav")) return;
+      zoomAt(k > 1.01 ? 1 : 2.6, e.clientX, e.clientY, true);
+    });
+
+    stage.addEventListener("pointerdown", e=>{
+      if(e.target.closest(".lb-nav")) return;
+      pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+      stage.setPointerCapture(e.pointerId);
+      if(pointers.size === 2){
+        const [a,b] = [...pointers.values()];
+        pinchDist = Math.hypot(a.x-b.x, a.y-b.y) || 1;
+        pinchK = k; panning = false;
+      } else {
+        panning = true; panX = e.clientX - tx; panY = e.clientY - ty; moved = 0;
+        stage.classList.add("panning");
+      }
+    });
+    stage.addEventListener("pointermove", e=>{
+      if(!pointers.has(e.pointerId)) return;
+      const prev = pointers.get(e.pointerId);
+      pointers.set(e.pointerId, {x:e.clientX, y:e.clientY});
+      if(pointers.size === 2){
+        const [a,b] = [...pointers.values()];
+        const d = Math.hypot(a.x-b.x, a.y-b.y) || 1;
+        zoomAt(pinchK * (d / pinchDist), (a.x+b.x)/2, (a.y+b.y)/2, false);
+        return;
+      }
+      if(!panning) return;
+      moved += Math.abs(e.clientX - prev.x) + Math.abs(e.clientY - prev.y);
+      if(k > 1.01){
+        tx = e.clientX - panX; ty = e.clientY - panY;
+        clampPan(); apply(false);
+      }
+    });
+    function endPointer(e){
+      pointers.delete(e.pointerId);
+      if(pointers.size < 2) pinchDist = 0;
+      if(pointers.size === 0){
+        stage.classList.remove("panning");
+        if(panning && k <= 1.01 && moved < 8 && !e.target.closest(".lb-nav")) close();
+        panning = false;
+      }
+    }
+    stage.addEventListener("pointerup", endPointer);
+    stage.addEventListener("pointercancel", endPointer);
+
+    document.addEventListener("keydown", e=>{
+      if(box.hidden) return;
+      if(e.key === "Escape"){ e.stopPropagation(); close(); }
+      else if(e.key === "ArrowLeft"){ e.preventDefault(); show(idx - 1); }
+      else if(e.key === "ArrowRight"){ e.preventDefault(); show(idx + 1); }
+      else if(e.key === "+" || e.key === "="){ zoomAt(k * 1.5, undefined, undefined, true); }
+      else if(e.key === "-"){ zoomAt(k / 1.5, undefined, undefined, true); }
+      else if(e.key === "0"){ reset(); }
+    }, true);
+
+    window.addEventListener("resize", ()=>{ if(!box.hidden){ clampPan(); apply(false); } });
+  })();
 
   /* ============================================================
      GRILLA DE PROYECTOS — la card abre su carrusel en un panel
@@ -1309,5 +1554,25 @@
   document.getElementById("yr").textContent = new Date().getFullYear();
   applyLang("es");
 </script>
+  <!-- ================= VISOR A PANTALLA COMPLETA ================= -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <div class="lb-bar">
+      <span class="lb-count"><b class="lb-cur">01</b><span class="c-slash">/</span><span class="lb-tot">01</span></span>
+      <span class="lb-title" id="lbTitle"></span>
+      <div class="lb-tools">
+        <button class="lb-btn lb-zout" type="button" aria-label="Alejar">&minus;</button>
+        <span class="lb-zoom">100%</span>
+        <button class="lb-btn lb-zin" type="button" aria-label="Acercar">+</button>
+        <button class="lb-btn lb-close" type="button" aria-label="Cerrar visor">&times;</button>
+      </div>
+    </div>
+    <div class="lb-stage" id="lbStage">
+      <button class="lb-nav lb-prev" type="button" aria-label="Imagen anterior">&larr;</button>
+      <img alt="" id="lbImg" draggable="false">
+      <button class="lb-nav lb-next" type="button" aria-label="Imagen siguiente">&rarr;</button>
+    </div>
+    <div class="lb-hint" data-i18n="lbHint">Rueda o pellizc&aacute; para hacer zoom &middot; arrastr&aacute; para mover &middot; doble clic para acercar &middot; Esc para salir</div>
+  </div>
+
 </body>
 </html>
