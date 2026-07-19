@@ -291,8 +291,9 @@
 
   .lb-stage{
     position:relative;flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;
-    cursor:zoom-in;
+    cursor:zoom-in;touch-action:none;
   }
+  .lb-stage img,.lb-bar,.lb-hint,.lb-nav,.lb-btn{touch-action:none}
   .lb-stage.zoomed{cursor:grab}
   .lb-stage.panning{cursor:grabbing}
   .lb-stage img{
@@ -1189,9 +1190,10 @@
     });
 
     // --- arrastre con mouse / dedo ---
-    let pressSlide = null, pressY = 0, pressT = 0;
+    let pressSlide = null, pressY = 0, pressT = 0, pressN = 0;
     track.addEventListener("pointerdown", e=>{
       if(e.pointerType === "mouse" && e.button !== 0) return;
+      pressN++;
       pressSlide = e.target.closest ? e.target.closest(".slide") : null;
       pressY = e.clientY; pressT = Date.now();
       dragging = true; startX = e.clientX; startTx = curTx;
@@ -1210,7 +1212,7 @@
       const { step } = metrics();
       const moved = curTx - startTx;
       const dy = e && e.clientY !== undefined ? Math.abs(e.clientY - pressY) : 0;
-      const isTap = Math.abs(moved) < 8 && dy < 8 && (Date.now() - pressT) < 600;
+      const isTap = pressN === 1 && Math.abs(moved) < 8 && dy < 8 && (Date.now() - pressT) < 600;
       // umbral: 18% del ancho de un slide decide el cambio
       if(Math.abs(moved) > step * 0.18){
         go(moved < 0 ? 1 : -1);
@@ -1222,7 +1224,7 @@
           openLightbox(IMGS, isNaN(idx) ? realIndex() : idx, head ? head.textContent : "");
         }
       }
-      pressSlide = null;
+      pressSlide = null; pressN = 0;
     };
     track.addEventListener("pointerup", endDrag);
     track.addEventListener("pointercancel", endDrag);
@@ -1256,7 +1258,12 @@
     const MIN = 1, MAX = 6;
     let list = [], idx = 0, k = 1, tx = 0, ty = 0, lastFocus = null;
     const pointers = new Map();
-    let pinchDist = 0, pinchK = 1, panning = false, panX = 0, panY = 0, moved = 0;
+    let pinchDist = 0, pinchK = 1, panning = false, panX = 0, panY = 0, moved = 0, multi = false;
+    function clearGesture(){
+      pointers.clear();
+      pinchDist = 0; panning = false; multi = false; moved = 0;
+      stage.classList.remove("panning");
+    }
 
     function apply(eased){
       img.classList.toggle("eased", !!eased);
@@ -1298,6 +1305,7 @@
     openLightbox = function(images, start, title){
       if(!images || !images.length) return;
       list = images;
+      clearGesture();
       lastFocus = document.activeElement;
       titleEl.textContent = title || "";
       box.hidden = false;
@@ -1308,6 +1316,7 @@
     function close(){
       if(box.hidden) return;
       box.hidden = true;
+      clearGesture();
       document.body.classList.remove("lb-open");
       img.removeAttribute("src");
       if(lastFocus && lastFocus.focus) lastFocus.focus({preventScroll:true});
@@ -1336,7 +1345,7 @@
       if(pointers.size === 2){
         const [a,b] = [...pointers.values()];
         pinchDist = Math.hypot(a.x-b.x, a.y-b.y) || 1;
-        pinchK = k; panning = false;
+        pinchK = k; panning = false; multi = true;
       } else {
         panning = true; panX = e.clientX - tx; panY = e.clientY - ty; moved = 0;
         stage.classList.add("panning");
@@ -1361,11 +1370,18 @@
     });
     function endPointer(e){
       pointers.delete(e.pointerId);
-      if(pointers.size < 2) pinchDist = 0;
+      if(pointers.size === 1){
+        // quedó un solo dedo tras un pellizco: re-anclar el paneo o el gesto salta
+        const p = [...pointers.values()][0];
+        pinchDist = 0;
+        panning = true; panX = p.x - tx; panY = p.y - ty;
+        return;
+      }
       if(pointers.size === 0){
         stage.classList.remove("panning");
-        if(panning && k <= 1.01 && moved < 8 && !e.target.closest(".lb-nav")) close();
-        panning = false;
+        const wasTap = panning && !multi && k <= 1.01 && moved < 8;
+        panning = false; multi = false; pinchDist = 0;
+        if(wasTap && e.target.closest && !e.target.closest(".lb-nav")) close();
       }
     }
     stage.addEventListener("pointerup", endPointer);
@@ -1380,6 +1396,15 @@
       else if(e.key === "-"){ zoomAt(k / 1.5, undefined, undefined, true); }
       else if(e.key === "0"){ reset(); }
     }, true);
+
+    // Safari iOS: bloquear el zoom nativo de la página mientras el visor está abierto
+    ["gesturestart","gesturechange","gestureend"].forEach(t=>{
+      document.addEventListener(t, e=>{ if(!box.hidden) e.preventDefault(); }, {passive:false});
+    });
+    box.addEventListener("touchstart", e=>{ if(e.touches.length > 1) e.preventDefault(); }, {passive:false});
+    box.addEventListener("touchmove", e=>{ e.preventDefault(); }, {passive:false});
+    // si el visor se cierra con un dedo apoyado, el navegador nunca manda pointerup
+    document.addEventListener("visibilitychange", ()=>{ if(document.hidden) clearGesture(); });
 
     window.addEventListener("resize", ()=>{ if(!box.hidden){ clampPan(); apply(false); } });
   })();
