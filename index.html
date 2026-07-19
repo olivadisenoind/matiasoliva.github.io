@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="build" content="visor-v5" />
+<meta name="build" content="visor-v6" />
 <title>Matías Oliva — EcoDiseño Radikal</title>
 <meta name="description" content="Diseño industrial como hacedor cultural. Transformar tensiones o aspiraciones en nuevas formas de vincularnos entre nosotros y con el entorno." />
 <meta name="author" content="Matías Oliva" />
@@ -216,7 +216,7 @@
   .carousel{position:relative}
   .c-fullbleed{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
   .c-track{
-    overflow:hidden;
+    overflow:hidden;min-width:0;
     padding-bottom:0.4rem;
     cursor:grab;
     touch-action:pan-y;
@@ -341,11 +341,11 @@
   /* ---------- PROYECTOS · GRILLA DE CARDS ---------- */
   .proj-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3,minmax(0,1fr));
     gap:clamp(1rem,1.6vw,1.5rem);
   }
-  @media(max-width:1060px){ .proj-grid{grid-template-columns:repeat(2,1fr)} }
-  @media(max-width:640px){ .proj-grid{grid-template-columns:1fr} }
+  @media(max-width:1060px){ .proj-grid{grid-template-columns:repeat(2,minmax(0,1fr))} }
+  @media(max-width:640px){ .proj-grid{grid-template-columns:minmax(0,1fr)} }
 
   .proj-card{
     position:relative;display:flex;flex-direction:column;text-align:left;
@@ -434,7 +434,7 @@
 
   /* --- panel desplegable con el carrusel --- */
   .proj-panel{
-    grid-column:1 / -1;position:relative;
+    grid-column:1 / -1;position:relative;min-width:0;overflow:hidden;
     border:1px solid var(--ultra);border-top-width:2px;background:var(--ink);
     padding:clamp(1.1rem,2.4vw,1.9rem);scroll-margin-top:6.5rem;
     animation:panelIn .5s cubic-bezier(.4,.01,.2,1);
@@ -450,6 +450,8 @@
   .pp-close:hover{color:var(--bone);border-color:var(--ultra)}
   /* dentro del panel el carrusel queda contenido (no full-bleed) */
   .proj-panel .c-fullbleed{width:auto;position:static;left:auto;right:auto;margin:0}
+  .proj-card,.pp-body,.proj-panel .project,.proj-panel .carousel,
+  .proj-panel .c-fullbleed,.proj-panel .c-track,.proj-panel .c-rail{min-width:0;max-width:100%}
   .proj-panel .project + .project{margin-top:0}
   .proj-panel .project-head{padding-right:6rem}
   .proj-panel .slide-media{height:min(62vh,540px)}
