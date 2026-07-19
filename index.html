@@ -256,6 +256,127 @@
   .c-count b{color:var(--bone);font-weight:700}
   .c-slash{color:var(--line);margin:0 0.2rem}
 
+  /* ---------- PROYECTOS · GRILLA DE CARDS ---------- */
+  .proj-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:clamp(1rem,1.6vw,1.5rem);
+  }
+  @media(max-width:1060px){ .proj-grid{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:640px){ .proj-grid{grid-template-columns:1fr} }
+
+  .proj-card{
+    position:relative;display:flex;flex-direction:column;text-align:left;
+    background:var(--ink-2);border:1px solid var(--line);color:inherit;
+    font:inherit;padding:0;overflow:hidden;cursor:pointer;
+    transition:transform .4s cubic-bezier(.4,.01,.2,1),border-color .3s,background .3s;
+  }
+  .proj-card::after{
+    content:"";position:absolute;left:0;top:0;height:2px;width:0;
+    background:var(--ultra);transition:width .5s cubic-bezier(.4,.01,.2,1);z-index:4;
+  }
+  .proj-card:hover,.proj-card:focus-visible{transform:translateY(-6px);border-color:rgba(239,235,222,0.3);background:var(--ink)}
+  .proj-card:hover::after,.proj-card:focus-visible::after,.proj-card.is-active::after{width:100%}
+  .proj-card.is-active{border-color:var(--ultra);background:var(--ink);transform:none}
+
+  .pc-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--ink)}
+  .pc-media img{
+    width:100%;height:100%;object-fit:cover;display:block;
+    filter:grayscale(.4) brightness(.8) contrast(1.03);
+    transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s ease;
+  }
+  .proj-card:hover .pc-media img,.proj-card:focus-visible .pc-media img,.proj-card.is-active .pc-media img{
+    transform:scale(1.06);filter:none;
+  }
+  .pc-media::before{
+    content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(180deg,rgba(20,21,15,.55) 0%,transparent 38%,transparent 62%,rgba(20,21,15,.6) 100%);
+  }
+  .pc-num{
+    position:absolute;top:.75rem;left:.9rem;z-index:3;
+    font-family:var(--font-mono);font-size:.72rem;letter-spacing:.18em;color:var(--bone);
+    transition:color .3s;
+  }
+  .proj-card:hover .pc-num,.proj-card.is-active .pc-num{color:var(--ultra-2)}
+  .pc-count{
+    position:absolute;bottom:.75rem;right:.9rem;z-index:3;
+    font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--bone);background:rgba(20,21,15,.6);backdrop-filter:blur(6px);
+    border:1px solid var(--line);padding:.24rem .5rem;
+  }
+
+  .pc-body{padding:1.15rem clamp(1rem,1.6vw,1.3rem) 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+  .pc-body b{
+    font-family:var(--font-display);font-weight:600;line-height:1.05;letter-spacing:-.02em;
+    font-size:clamp(1.15rem,1rem + .5vw,1.5rem);
+  }
+  .pc-cat{font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim)}
+  .pc-hook{
+    font-size:.95rem;line-height:1.45;color:var(--bone-dim);margin-top:.2rem;
+    display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+  }
+  .pc-cta{
+    margin-top:auto;padding-top:1rem;display:flex;align-items:center;gap:.55rem;
+    font-family:var(--font-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ultra-2);
+  }
+  .pc-cta i{font-style:normal;transition:transform .35s cubic-bezier(.4,.01,.2,1);display:inline-block}
+  .proj-card:hover .pc-cta i{transform:translateX(7px)}
+  .proj-card.is-active .pc-cta i{transform:rotate(90deg)}
+
+  /* --- card vacía: próximo proyecto --- */
+  .proj-card.is-empty{
+    cursor:default;background:transparent;border-style:dashed;border-color:rgba(239,235,222,0.2);
+  }
+  .proj-card.is-empty:hover{transform:none;background:transparent;border-color:rgba(239,235,222,0.32)}
+  .proj-card.is-empty::after{display:none}
+  .pc-ghost{
+    position:relative;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;
+    background:repeating-linear-gradient(45deg,transparent,transparent 16px,rgba(239,235,222,0.03) 16px,rgba(239,235,222,0.03) 17px);
+  }
+  .pc-ghost .g-num{
+    font-family:var(--font-display);font-weight:700;letter-spacing:-.045em;
+    font-size:clamp(3.2rem,7vw,5rem);color:rgba(239,235,222,0.1);line-height:1;
+  }
+  .pc-live{
+    position:absolute;bottom:.75rem;left:.9rem;display:flex;align-items:center;gap:.45rem;
+    font-family:var(--font-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);
+  }
+  .pc-live::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:var(--ultra);
+    animation:pulseDot 1.9s ease-in-out infinite;
+  }
+  @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.75)}}
+  @media(prefers-reduced-motion:reduce){ .pc-live::before{animation:none} }
+  .proj-card.is-empty .pc-body b{color:var(--bone-dim)}
+
+  /* --- panel desplegable con el carrusel --- */
+  .proj-panel{
+    grid-column:1 / -1;position:relative;
+    border:1px solid var(--ultra);border-top-width:2px;background:var(--ink);
+    padding:clamp(1.1rem,2.4vw,1.9rem);scroll-margin-top:6.5rem;
+    animation:panelIn .5s cubic-bezier(.4,.01,.2,1);
+  }
+  @keyframes panelIn{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){ .proj-panel{animation:none} }
+  .pp-close{
+    position:absolute;top:.7rem;right:.7rem;z-index:5;
+    background:none;border:1px solid var(--line);color:var(--bone-dim);cursor:pointer;
+    font-family:var(--font-mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;
+    padding:.45rem .75rem;display:flex;align-items:center;gap:.5rem;transition:.25s;
+  }
+  .pp-close:hover{color:var(--bone);border-color:var(--ultra)}
+  /* dentro del panel el carrusel queda contenido (no full-bleed) */
+  .proj-panel .c-fullbleed{width:auto;position:static;left:auto;right:auto;margin:0}
+  .proj-panel .project + .project{margin-top:0}
+  .proj-panel .project-head{padding-right:6rem}
+  .proj-panel .slide-media{height:min(62vh,540px)}
+  @media(max-width:700px){ .proj-panel .slide-media{height:min(52vh,400px)} }
+  .proj-panel .slide{flex:0 0 88%}
+  @media(min-width:700px){ .proj-panel .slide{flex-basis:76%} }
+  @media(min-width:1100px){ .proj-panel .slide{flex-basis:68%} }
+  #projStore{display:none}
+
   /* ---------- CONTACTO ---------- */
   .contacto{border-top:1px solid var(--line)}
   .cta-line{
@@ -522,11 +643,71 @@
         <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>04</span>
         <span class="eyebrow"><span class="sec" data-i18n="nav4">Proyectos</span> — <span data-i18n="proySub">selección</span></span>
       </div>
-      <!-- ► CADA PROYECTO ES SU PROPIO CARRUSEL (apilados uno sobre otro).
-           Fotos en /fotos junto al HTML. Sumar imágenes: copiar un <div class="slide">.
-           Sumar proyecto: copiar un <article class="project"> entero. -->
+      <!-- ► GRILLA DE CARDS: cada card abre su carrusel en un panel desplegable.
+           Sumar proyecto: 1) agregar un <button class="proj-card" data-project="p4"> en .proj-grid
+                            2) agregar su <article class="project" id="proj-p4"> dentro de #projStore
+           Sumar imágenes a un proyecto: copiar un <div class="slide"> dentro de su carrusel. -->
+      <div class="proj-grid" id="projGrid">
+        <button class="proj-card reveal" type="button" data-project="p1" aria-expanded="false" aria-controls="projPanel">
+          <div class="pc-media">
+            <img src="fotos/capullo-01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <span class="pc-num">01</span>
+            <span class="pc-count">05 <span data-i18n="cardImgs">imágenes</span></span>
+          </div>
+          <div class="pc-body">
+            <b data-i18n="p1t">Sillón Capullo</b>
+            <span class="pc-cat" data-i18n="p1c">Objeto · 2025</span>
+            <p class="pc-hook" data-i18n="p1desc"><span>Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.</span></p>
+            <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </button>
+        <button class="proj-card reveal" type="button" data-project="p2" aria-expanded="false" aria-controls="projPanel">
+          <div class="pc-media">
+            <img src="fotos/cianoback-01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <span class="pc-num">02</span>
+            <span class="pc-count">04 <span data-i18n="cardImgs">imágenes</span></span>
+          </div>
+          <div class="pc-body">
+            <b data-i18n="p2t">Kit Cianoback</b>
+            <span class="pc-cat" data-i18n="p2c">Objeto · 2024</span>
+            <p class="pc-hook" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></p>
+            <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </button>
+        <button class="proj-card reveal" type="button" data-project="p3" aria-expanded="false" aria-controls="projPanel">
+          <div class="pc-media">
+            <img src="fotos/ordna-01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <span class="pc-num">03</span>
+            <span class="pc-count">12 <span data-i18n="cardImgs">imágenes</span></span>
+          </div>
+          <div class="pc-body">
+            <b data-i18n="p3t">Ordna</b>
+            <span class="pc-cat" data-i18n="p3c">Objeto · 2026</span>
+            <p class="pc-hook" data-i18n="p3desc"><span>Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.</span></p>
+            <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
+          </div>
+        </button>
+        <div class="proj-card is-empty reveal">
+          <div class="pc-ghost">
+            <span class="g-num">04</span>
+            <span class="pc-live" data-i18n="soonTag">En desarrollo</span>
+          </div>
+          <div class="pc-body">
+            <b data-i18n="soonT">Proyecto 04</b>
+            <span class="pc-cat" data-i18n="soonC">Próximamente · 2026</span>
+            <p class="pc-hook" data-i18n="soonDesc"><span>Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.</span></p>
+            <span class="pc-cta" style="color:var(--bone-dim)"><span data-i18n="soonCta">En taller</span> <i aria-hidden="true">&middot;&middot;&middot;</i></span>
+          </div>
+        </div>
+        <div class="proj-panel" id="projPanel" hidden>
+          <button class="pp-close" type="button" aria-label="Cerrar proyecto"><span data-i18n="cardClose">Cerrar</span> <span aria-hidden="true">&times;</span></button>
+          <div class="pp-body"></div>
+        </div>
+      </div>
 
-      <article class="project reveal">
+      <!-- depósito oculto: los carruseles viven acá hasta que se abre su card -->
+      <div id="projStore">
+      <article class="project" id="proj-p1">
         <div class="project-head">
           <b data-i18n="p1t">Sillón Capullo</b>
           <span data-i18n="p1c">Objeto · 2025</span>
@@ -546,8 +727,7 @@
           </div>
         </div>
       </article>
-
-      <article class="project reveal">
+      <article class="project" id="proj-p2">
         <div class="project-head">
           <b data-i18n="p2t">Kit Cianoback</b>
           <span data-i18n="p2c">Objeto · 2024</span>
@@ -566,8 +746,7 @@
           </div>
         </div>
       </article>
-
-      <article class="project reveal">
+      <article class="project" id="proj-p3">
         <div class="project-head">
           <b data-i18n="p3t">Ordna</b>
           <span data-i18n="p3c">Objeto · 2026</span>
@@ -594,6 +773,7 @@
           </div>
         </div>
       </article>
+      </div>
     </div>
   </section>
 
@@ -660,6 +840,10 @@
       pr3d:"Mención honorífica", pr3tag:"Distinción",
       pr4d:"Finalista seleccionado · Categoría Estudiante · Brasil", pr4tag:"Catálogo",
       proySub:"selección",
+      cardCta:"Ver proyecto", cardClose:"Cerrar", cardImgs:"imágenes",
+      soonT:"Proyecto 04", soonC:"Próximamente · 2026", soonTag:"En desarrollo", soonCta:"En taller",
+      soonDesc:"Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.",
+
       phImg:"Tu imagen aquí",
       p1t:"Sillón Capullo", p1c:"Objeto · 2025", p1desc:"Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.",
       p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.",
@@ -691,6 +875,10 @@
       pr3d:"Menção honrosa", pr3tag:"Distinção",
       pr4d:"Finalista selecionado · Categoria Estudante · Brasil", pr4tag:"Catálogo",
       proySub:"seleção",
+      cardCta:"Ver projeto", cardClose:"Fechar", cardImgs:"imagens",
+      soonT:"Projeto 04", soonC:"Em breve · 2026", soonTag:"Em desenvolvimento", soonCta:"No ateliê",
+      soonDesc:"Um novo projeto está em processo no ateliê. Volte em breve para vê-lo publicado aqui.",
+
       phImg:"Sua imagem aqui",
       p1t:"Poltrona Casulo", p1c:"Objeto · 2025", p1desc:"Design de mobiliário experimental desenvolvido a partir da reutilização de descartes têxteis. Sua silhueta envolvente propõe uma experiência diferencial e transforma esses resíduos em uma nova oportunidade material, funcional e expressiva.",
       p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de baixo custo que adapta maquinário de drenagem existente para coletar cianobactérias com maior eficiência, menor consumo energético e maior concentração do resíduo, facilitando sua incorporação em novos ciclos produtivos, como a geração de biogás.",
@@ -722,6 +910,10 @@
       pr3d:"Honorable mention", pr3tag:"Distinction",
       pr4d:"Selected finalist · Student category · Brazil", pr4tag:"Catalogue",
       proySub:"selection",
+      cardCta:"View project", cardClose:"Close", cardImgs:"images",
+      soonT:"Project 04", soonC:"Coming soon · 2026", soonTag:"In development", soonCta:"In the studio",
+      soonDesc:"A new project is currently in the works. Come back soon to see it published here.",
+
       phImg:"Your image here",
       p1t:"Cocoon Armchair", p1c:"Object · 2025", p1desc:"Experimental furniture design developed from the reuse of textile waste. Its enveloping silhouette proposes a distinctive experience and transforms these discards into a new material, functional, and expressive opportunity.",
       p2t:"Cianoback Kit", p2c:"Object · 2024", p2desc:"A low-cost system that adapts existing drainage machinery to collect cyanobacteria with greater efficiency, lower energy consumption, and higher residue concentration — enabling its incorporation into new productive cycles, such as biogas generation.",
@@ -751,7 +943,7 @@
       const key = el.getAttribute("data-i18n");
       if(key === "cycle0"){ el.textContent = dict.cycle[cycleIdx % dict.cycle.length]; return; }
       if(dict[key] !== undefined){
-        el.innerHTML = /desc$/.test(key) ? ("<span>"+dict[key]+"</span>") : dict[key];
+        el.innerHTML = /desc$/i.test(key) ? ("<span>"+dict[key]+"</span>") : dict[key];
       }
     });
     document.querySelectorAll(".lang button").forEach(b=>{
@@ -796,6 +988,7 @@
   });
 
   // ---- carruseles de proyectos (circulares, uno por proyecto) ----
+  const CAROUSEL_PLACE = new WeakMap();
   document.querySelectorAll(".carousel").forEach(car=>{
     const track = car.querySelector(".c-track");
     if(!track) return;
@@ -919,10 +1112,86 @@
 
     // --- posición inicial y resize ---
     const place = () => { setTx(txFor(cur), false); refresh(); };
+    CAROUSEL_PLACE.set(car, place);
     place();
     if(document.readyState !== "complete") window.addEventListener("load", place, { once:true });
     let rz; window.addEventListener("resize", ()=>{ clearTimeout(rz); rz = setTimeout(place, 120); });
   });
+
+  /* ============================================================
+     GRILLA DE PROYECTOS — la card abre su carrusel en un panel
+     que se inserta debajo de la fila a la que pertenece la card.
+     ============================================================ */
+  (function(){
+    const grid  = document.getElementById("projGrid");
+    const panel = document.getElementById("projPanel");
+    const store = document.getElementById("projStore");
+    if(!grid || !panel || !store) return;
+    const body  = panel.querySelector(".pp-body");
+    const closeBtn = panel.querySelector(".pp-close");
+    let openId = null, activeCard = null;
+
+    const cards = () => Array.from(grid.querySelectorAll(".proj-card[data-project]"));
+
+    function rowEndOf(card){
+      const all = Array.from(grid.querySelectorAll(".proj-card"));
+      const top = card.offsetTop;
+      const row = all.filter(c => Math.abs(c.offsetTop - top) < 4);
+      return row[row.length - 1] || card;
+    }
+
+    function closeProject(silent){
+      if(!openId) return;
+      const art = body.firstElementChild;
+      if(art) store.appendChild(art);
+      panel.hidden = true;
+      if(activeCard){
+        activeCard.classList.remove("is-active");
+        activeCard.setAttribute("aria-expanded","false");
+      }
+      const prevCard = activeCard;
+      openId = null; activeCard = null;
+      if(!silent && prevCard) prevCard.focus({preventScroll:true});
+    }
+
+    function openProject(id, card){
+      if(openId === id){ closeProject(); return; }
+      const art = document.getElementById("proj-" + id);
+      if(!art) return;
+      closeProject(true);
+      rowEndOf(card).after(panel);
+      body.appendChild(art);
+      art.classList.add("in");
+      panel.hidden = false;
+      card.classList.add("is-active");
+      card.setAttribute("aria-expanded","true");
+      openId = id; activeCard = card;
+      const place = CAROUSEL_PLACE.get(art.querySelector(".carousel"));
+      requestAnimationFrame(()=>{
+        if(place) place();
+        panel.scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block:"start"});
+      });
+    }
+
+    cards().forEach(card=>{
+      card.addEventListener("click", ()=> openProject(card.dataset.project, card));
+    });
+    closeBtn.addEventListener("click", ()=> closeProject());
+    document.addEventListener("keydown", e=>{ if(e.key === "Escape") closeProject(); });
+
+    let rzg;
+    window.addEventListener("resize", ()=>{
+      clearTimeout(rzg);
+      rzg = setTimeout(()=>{
+        if(!openId || !activeCard) return;
+        rowEndOf(activeCard).after(panel);
+        const art = body.firstElementChild;
+        if(!art) return;
+        const place = CAROUSEL_PLACE.get(art.querySelector(".carousel"));
+        if(place) place();
+      }, 140);
+    });
+  })();
 
   /* ============================================================
      MANIFIESTO — contenido por capítulos.
