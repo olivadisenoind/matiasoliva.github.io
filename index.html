@@ -262,12 +262,12 @@
     background:rgba(12,13,9,0.96);
     display:flex;flex-direction:column;
     animation:lbIn .28s ease;
-    touch-action:none;
+    touch-action:none;overscroll-behavior:contain;-webkit-user-select:none;user-select:none;
   }
   @keyframes lbIn{from{opacity:0}to{opacity:1}}
   @media(prefers-reduced-motion:reduce){ .lightbox{animation:none} }
   .lightbox[hidden]{display:none}
-  body.lb-open{overflow:hidden}
+  body.lb-open{overflow:hidden;touch-action:none}
 
   .lb-bar{
     position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;
@@ -892,6 +892,27 @@
     <span>Córdoba · AR</span>
   </div>
 </footer>
+
+  <!-- ================= VISOR A PANTALLA COMPLETA ================= -->
+  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <div class="lb-bar">
+      <span class="lb-count"><b class="lb-cur">01</b><span class="c-slash">/</span><span class="lb-tot">01</span></span>
+      <span class="lb-title" id="lbTitle"></span>
+      <div class="lb-tools">
+        <button class="lb-btn lb-zout" type="button" aria-label="Alejar">&minus;</button>
+        <span class="lb-zoom">100%</span>
+        <button class="lb-btn lb-zin" type="button" aria-label="Acercar">+</button>
+        <button class="lb-btn lb-close" type="button" aria-label="Cerrar visor">&times;</button>
+      </div>
+    </div>
+    <div class="lb-stage" id="lbStage">
+      <button class="lb-nav lb-prev" type="button" aria-label="Imagen anterior">&larr;</button>
+      <img alt="" id="lbImg" draggable="false">
+      <button class="lb-nav lb-next" type="button" aria-label="Imagen siguiente">&rarr;</button>
+    </div>
+    <div class="lb-hint" data-i18n="lbHint">Rueda o pellizc&aacute; para hacer zoom &middot; arrastr&aacute; para mover &middot; doble clic para acercar &middot; Esc para salir</div>
+  </div>
+
 
 <script>
   const I18N = {
@@ -1554,25 +1575,6 @@
   document.getElementById("yr").textContent = new Date().getFullYear();
   applyLang("es");
 </script>
-  <!-- ================= VISOR A PANTALLA COMPLETA ================= -->
-  <div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Visor de imagen">
-    <div class="lb-bar">
-      <span class="lb-count"><b class="lb-cur">01</b><span class="c-slash">/</span><span class="lb-tot">01</span></span>
-      <span class="lb-title" id="lbTitle"></span>
-      <div class="lb-tools">
-        <button class="lb-btn lb-zout" type="button" aria-label="Alejar">&minus;</button>
-        <span class="lb-zoom">100%</span>
-        <button class="lb-btn lb-zin" type="button" aria-label="Acercar">+</button>
-        <button class="lb-btn lb-close" type="button" aria-label="Cerrar visor">&times;</button>
-      </div>
-    </div>
-    <div class="lb-stage" id="lbStage">
-      <button class="lb-nav lb-prev" type="button" aria-label="Imagen anterior">&larr;</button>
-      <img alt="" id="lbImg" draggable="false">
-      <button class="lb-nav lb-next" type="button" aria-label="Imagen siguiente">&rarr;</button>
-    </div>
-    <div class="lb-hint" data-i18n="lbHint">Rueda o pellizc&aacute; para hacer zoom &middot; arrastr&aacute; para mover &middot; doble clic para acercar &middot; Esc para salir</div>
-  </div>
 
 </body>
 </html>
