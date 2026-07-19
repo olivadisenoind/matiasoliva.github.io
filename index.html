@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="build" content="visor-v5" />
 <title>Matías Oliva — EcoDiseño Radikal</title>
 <meta name="description" content="Diseño industrial como hacedor cultural. Transformar tensiones o aspiraciones en nuevas formas de vincularnos entre nosotros y con el entorno." />
 <meta name="author" content="Matías Oliva" />
@@ -258,7 +259,7 @@
 
   /* ---------- VISOR A PANTALLA COMPLETA (zoom) ---------- */
   .lightbox{
-    position:fixed;inset:0;z-index:120;
+    position:fixed;inset:0;z-index:120;overflow:hidden;
     background:rgba(12,13,9,0.96);
     display:flex;flex-direction:column;
     animation:lbIn .28s ease;
@@ -268,6 +269,8 @@
   @media(prefers-reduced-motion:reduce){ .lightbox{animation:none} }
   .lightbox[hidden]{display:none}
   .lightbox.vv{inset:auto;left:0;top:0;transform-origin:0 0}
+  .lightbox:fullscreen{width:100%;height:100%;inset:0;transform:none;background:#0C0D09}
+  .lightbox:-webkit-full-screen{width:100%;height:100%;background:#0C0D09}
   body.lb-open{overflow:hidden;touch-action:none}
 
   .lb-bar{
@@ -292,7 +295,7 @@
 
   .lb-stage{
     position:relative;flex:1;overflow:hidden;display:flex;align-items:center;justify-content:center;
-    cursor:zoom-in;touch-action:none;
+    cursor:zoom-in;touch-action:none;min-height:0;min-width:0;
   }
   .lb-stage img,.lb-bar,.lb-hint,.lb-nav,.lb-btn{touch-action:none}
   .lb-stage.zoomed{cursor:grab}
@@ -1315,8 +1318,32 @@
       vpMeta.setAttribute("content", VP_BASE + ", maximum-scale=1, user-scalable=no");
       setTimeout(()=>{ vpMeta.setAttribute("content", VP_BASE); }, 350);
     }
+    function isFs(){ return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+    function goFullscreen(){
+      const req = box.requestFullscreen || box.webkitRequestFullscreen;
+      if(!req || isFs()) return;
+      try{
+        const p = req.call(box, {navigationUI:"hide"});
+        if(p && p.catch) p.catch(()=>{});   // iOS Safari no lo soporta: seguimos con el overlay
+      }catch(err){}
+    }
+    function exitFullscreen(){
+      if(!isFs()) return;
+      const ex = document.exitFullscreen || document.webkitExitFullscreen;
+      if(!ex) return;
+      try{
+        const p = ex.call(document);
+        if(p && p.catch) p.catch(()=>{});
+      }catch(err){}
+    }
+    // si el usuario sale de pantalla completa con el gesto del sistema, cerramos el visor
+    ["fullscreenchange","webkitfullscreenchange"].forEach(t=>{
+      document.addEventListener(t, ()=>{ if(!isFs() && !box.hidden) close(); });
+    });
+
     function fitViewport(){
       if(box.hidden) return;
+      if(isFs()){ box.classList.remove("vv"); box.style.width = box.style.height = box.style.transform = ""; return; }
       if(!vv){ box.classList.remove("vv"); box.style.cssText = ""; return; }
       box.classList.add("vv");
       box.style.width  = vv.width + "px";
@@ -1338,6 +1365,7 @@
       titleEl.textContent = title || "";
       box.hidden = false;
       document.body.classList.add("lb-open");
+      goFullscreen();
       fitViewport();
       requestAnimationFrame(fitViewport);
       show(start || 0);
@@ -1346,6 +1374,7 @@
     function close(){
       if(box.hidden) return;
       box.hidden = true;
+      exitFullscreen();
       clearGesture();
       box.classList.remove("vv");
       box.style.width = box.style.height = box.style.transform = "";
