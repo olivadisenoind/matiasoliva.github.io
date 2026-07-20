@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="build" content="v7-ux" />
+<meta name="build" content="v11-hero" />
 <link rel="canonical" href="https://radikalecodesign.com/" />
 <link rel="alternate" hreflang="es" href="https://radikalecodesign.com/" />
 <link rel="alternate" hreflang="pt" href="https://radikalecodesign.com/?lang=pt" />
@@ -133,12 +133,12 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    min-height:100svh;
-    display:flex;flex-direction:column;justify-content:center;
-    padding-top:5.5rem;padding-bottom:2.2rem;
+    min-height:auto;
+    display:flex;flex-direction:column;
+    padding-top:clamp(5.2rem,7vw,6rem);padding-bottom:clamp(2.4rem,5vw,3.5rem);
     position:relative;
   }
-  .hero-eyebrow{margin-bottom:1.6rem}
+  .hero .hero-eyebrow{margin-bottom:clamp(1.1rem,2.5vw,1.5rem)}
   .hero h1{
     font-family:var(--font-display);
     font-weight:700;
@@ -146,15 +146,16 @@
     line-height:0.95;
     letter-spacing:-0.035em;
     max-width:16ch;
+    margin-bottom:clamp(1.6rem,4vw,2.4rem);
   }
   .cycle{
     display:inline-block;position:relative;color:var(--ultra-2);
-    min-width:4ch;
+    min-width:4ch;padding-bottom:0.15em;
   }
   .cycle .word{display:inline-block}
   .cycle::after{
     content:"";display:inline-block;width:0.62em;height:0.09em;
-    background:var(--ultra);vertical-align:0.2em;margin-left:0.12em;
+    background:var(--ultra);vertical-align:0.2em;margin-left:0.22em;
     animation:blink 1.15s steps(2,start) infinite;
   }
   @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -168,7 +169,7 @@
     line-height:1.5;
   }
   .scroll-hint{
-    margin-top:auto;padding-top:3rem;
+    margin-top:clamp(1.6rem,4vw,2.6rem);padding-top:0;
     font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.16em;
     text-transform:uppercase;color:var(--bone-dim);
     display:flex;align-items:center;gap:0.6rem;
@@ -623,7 +624,7 @@
   }
 
   /* ---------- TIRA DE TRABAJO EN EL HERO ---------- */
-  .hero-work{margin-top:clamp(1.4rem,2.4vw,2rem);display:flex;align-items:flex-end;gap:clamp(.6rem,1.4vw,1rem);flex-wrap:wrap}
+  .hero-work{margin-top:clamp(2.4rem,5vw,4rem);display:flex;align-items:flex-end;gap:clamp(.6rem,1.4vw,1rem);flex-wrap:wrap}
   .hw-item{
     position:relative;display:block;width:clamp(92px,15vw,168px);
     border:1px solid var(--line);overflow:hidden;background:var(--ink-2);
@@ -645,14 +646,15 @@
   .hw-all i{font-style:normal;transition:transform .3s}
   .hw-all:hover i{transform:translateX(6px)}
 
+  @media(min-width:901px){ .hero{min-height:92svh} }
   .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap}
   .hero-bottom .hero-lede{flex:1 1 22rem;max-width:34rem;margin-bottom:0}
   .hero-work{flex:0 0 auto;flex-wrap:nowrap;margin-top:0}
   @media(max-width:900px){
-    .hero-bottom{flex-direction:column;align-items:stretch}
+    .hero-bottom{flex-direction:column;align-items:stretch;gap:0}
     /* en mobile la prueba visual va antes del texto largo */
-    .hero-work{order:-1;margin:0 0 .4rem;flex-wrap:wrap}
-    .hero-bottom .hero-lede{margin-top:.6rem}
+    .hero-work{order:-1;margin:0;flex-wrap:wrap}
+    .hero-bottom .hero-lede{max-width:none;margin-top:clamp(1.6rem,5vw,2.2rem)}
   }
 
   /* ---------- SIGUIENTE PROYECTO ---------- */
@@ -712,7 +714,7 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-eyebrow eyebrow" data-i18n="heroKicker">Diseñador · Córdoba, Argentina</div>
-      <h1><span data-i18n="heroLead">El diseño no termina en los objetos. También da forma a —</span><br><span class="cycle" aria-live="polite"><span class="word" data-i18n="cycle0">hábitos</span></span></h1>
+      <h1><span data-i18n="heroLead">El diseño no termina en los objetos. También da forma a</span><br><span class="cycle" aria-live="polite"><span class="word" data-i18n="cycle0">hábitos</span></span></h1>
       <div class="hero-bottom">
       <p class="hero-lede" data-i18n="heroLede">Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.</p>
       <!-- ► Tira de trabajo: lleva a la grilla y abre el proyecto directamente. -->
@@ -986,7 +988,7 @@
       </div>
       <h2 class="cta-line reveal"><span data-i18n="ctaLead">Pensemos juntos qué producir,</span> <a class="cta-mail" href="mailto:olivadisenoind@gmail.com" data-i18n="ctaMail">y para qué.</a></h2>
       <!-- ► EDITÁ O BORRÁ esta línea según tu disponibilidad real. -->
-      <p class="avail reveal" data-i18n="availTxt">Disponible para proyectos de producto, ecodiseño y consultoría</p>
+      <p class="avail reveal" data-i18n="availTxt">Disponible para proyectos de producto, ecodiseño radikal y consultoría</p>
       <!-- ► Reemplazá el email de arriba (href="mailto:...") y los enlaces de abajo. -->
       <div class="socials reveal">
         <a href="mailto:olivadisenoind@gmail.com" data-i18n="soMail">olivadisenoind@gmail.com</a><button class="copy-mail" type="button" data-mail="olivadisenoind@gmail.com"><span data-i18n="copyMail">Copiar</span></button>
@@ -1046,7 +1048,7 @@
       role:"Diseñador · Project Manager",
       nav1:"Manifiesto", nav2:"Enfoque", nav3:"Práctica", nav4:"Proyectos", nav5:"Contacto",
       heroKicker:"Diseñador · Córdoba, Argentina",
-      heroLead:"El diseño no termina en los objetos. También da forma a —",
+      heroLead:"El diseño no termina en los objetos. También da forma a",
       heroLede:"Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.",
       scroll:"Ecodiseño Industrial Radikal",
       man1:"Diseño desde una conciencia de época: la de una civilización industrial que empieza a mostrar sus <em>límites</em>.",
@@ -1066,7 +1068,7 @@
       cardCta:"Ver proyecto", cardClose:"Cerrar", cardImgs:"imágenes",
       lbHint:"Rueda o pellizcá para hacer zoom · arrastrá para mover · doble clic para acercar · Esc para salir",
       heroAll:"Ver proyectos", nextProj:"Siguiente proyecto", copyMail:"Copiar", copiedMail:"¡Copiado!",
-      availTxt:"Disponible para proyectos de producto, ecodiseño y consultoría",
+      availTxt:"Disponible para proyectos de producto, ecodiseño radikal y consultoría",
       soonT:"Proyecto 04", soonC:"Próximamente · 2026", soonTag:"En desarrollo", soonCta:"En taller",
       soonDesc:"Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.",
 
@@ -1078,13 +1080,13 @@
       ctaLead:"Pensemos juntos qué producir,", ctaMail:"y para qué.",
       soMail:"olivadisenoind@gmail.com",
       footNote:"Diseño como acto cultural",
-      cycle:["hábitos","relaciones","valores","maneras de habitar"]
+      cycle:["hábitos","relaciones","comunidades","mundos posibles"]
     },
     pt:{
       role:"Designer · Project Manager",
       nav1:"Manifesto", nav2:"Abordagem", nav3:"Prática", nav4:"Projetos", nav5:"Contato",
       heroKicker:"Designer · Córdoba, Argentina",
-      heroLead:"O design não termina nos objetos. Também dá forma a —",
+      heroLead:"O design não termina nos objetos. Também dá forma a",
       heroLede:"Entendo o designer como um fazedor cultural: alguém capaz de traduzir contextos, tensões e aspirações em novas formas de nos vincularmos entre todes, com o entorno e com o mundo natural que habitamos.",
       scroll:"Ecodesign Industrial Radikal",
       man1:"Projeto a partir de uma consciência de época: a de uma civilização industrial que começa a mostrar seus <em>limites</em>.",
@@ -1104,7 +1106,7 @@
       cardCta:"Ver projeto", cardClose:"Fechar", cardImgs:"imagens",
       lbHint:"Role ou pince para dar zoom · arraste para mover · duplo clique para aproximar · Esc para sair",
       heroAll:"Ver projetos", nextProj:"Próximo projeto", copyMail:"Copiar", copiedMail:"Copiado!",
-      availTxt:"Disponível para projetos de produto, ecodesign e consultoria",
+      availTxt:"Disponível para projetos de produto, ecodesign radikal e consultoria",
       soonT:"Projeto 04", soonC:"Em breve · 2026", soonTag:"Em desenvolvimento", soonCta:"No ateliê",
       soonDesc:"Um novo projeto está em processo no ateliê. Volte em breve para vê-lo publicado aqui.",
 
@@ -1116,13 +1118,13 @@
       ctaLead:"Vamos pensar juntos o que produzir,", ctaMail:"e para quê.",
       soMail:"olivadisenoind@gmail.com",
       footNote:"Design como ato cultural",
-      cycle:["hábitos","relações","valores","maneiras de habitar"]
+      cycle:["hábitos","relações","comunidades","mundos possíveis"]
     },
     en:{
       role:"Designer · Project Manager",
       nav1:"Manifesto", nav2:"Approach", nav3:"Practice", nav4:"Projects", nav5:"Contact",
       heroKicker:"Designer · Córdoba, Argentina",
-      heroLead:"Design doesn't end with objects. It also gives form to —",
+      heroLead:"Design doesn't end with objects. It also gives form to",
       heroLede:"I understand the designer as a cultural maker: someone able to translate contexts, tensions, and aspirations into new ways of relating to one another, to our surroundings, and to the natural world we inhabit.",
       scroll:"Radical Industrial Ecodesign",
       man1:"I design from an awareness of our era: that of an industrial civilization beginning to show its <em>limits</em>.",
@@ -1142,7 +1144,7 @@
       cardCta:"View project", cardClose:"Close", cardImgs:"images",
       lbHint:"Scroll or pinch to zoom · drag to move · double-click to zoom in · Esc to exit",
       heroAll:"View projects", nextProj:"Next project", copyMail:"Copy", copiedMail:"Copied!",
-      availTxt:"Available for product design, ecodesign and consulting work",
+      availTxt:"Available for product design, radikal ecodesign and consulting work",
       soonT:"Project 04", soonC:"Coming soon · 2026", soonTag:"In development", soonCta:"In the studio",
       soonDesc:"A new project is currently in the works. Come back soon to see it published here.",
 
@@ -1154,7 +1156,7 @@
       ctaLead:"Let's think together about what to produce,", ctaMail:"and what for.",
       soMail:"olivadisenoind@gmail.com",
       footNote:"Design as a cultural act",
-      cycle:["habits","relationships","values","ways of inhabiting"]
+      cycle:["habits","relationships","communities","possible worlds"]
     }
   };
 
