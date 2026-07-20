@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="build" content="v11-hero" />
 <link rel="canonical" href="https://radikalecodesign.com/" />
 <link rel="alternate" hreflang="es" href="https://radikalecodesign.com/" />
 <link rel="alternate" hreflang="pt" href="https://radikalecodesign.com/?lang=pt" />
@@ -133,8 +132,7 @@
 
   /* ---------- HERO ---------- */
   .hero{
-    min-height:auto;
-    display:flex;flex-direction:column;
+    display:block;
     padding-top:clamp(5.2rem,7vw,6rem);padding-bottom:clamp(2.4rem,5vw,3.5rem);
     position:relative;
   }
@@ -168,13 +166,6 @@
     color:var(--bone);
     line-height:1.5;
   }
-  .scroll-hint{
-    margin-top:clamp(1.6rem,4vw,2.6rem);padding-top:0;
-    font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.16em;
-    text-transform:uppercase;color:var(--bone-dim);
-    display:flex;align-items:center;gap:0.6rem;
-  }
-  .scroll-hint::before{content:"";width:2.4rem;height:1px;background:var(--bone-dim)}
 
   /* ---------- SECTION SHELL ---------- */
   .section{padding:clamp(5rem,10vh,9rem) 0;border-top:1px solid var(--line)}
@@ -646,15 +637,14 @@
   .hw-all i{font-style:normal;transition:transform .3s}
   .hw-all:hover i{transform:translateX(6px)}
 
-  @media(min-width:901px){ .hero{min-height:92svh} }
-  .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap}
-  .hero-bottom .hero-lede{flex:1 1 22rem;max-width:34rem;margin-bottom:0}
+  .hero-bottom{display:flex;align-items:flex-start;justify-content:space-between;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap}
+  .hero-bottom .hero-lede{flex:0 1 34rem;max-width:34rem;margin-bottom:0}
   .hero-work{flex:0 0 auto;flex-wrap:nowrap;margin-top:0}
-  @media(max-width:900px){
+  @media(max-width:1180px){
     .hero-bottom{flex-direction:column;align-items:stretch;gap:0}
     /* en mobile la prueba visual va antes del texto largo */
     .hero-work{order:-1;margin:0;flex-wrap:wrap}
-    .hero-bottom .hero-lede{max-width:none;margin-top:clamp(1.6rem,5vw,2.2rem)}
+    .hero-bottom .hero-lede{flex:none;max-width:none;margin-top:clamp(1.6rem,5vw,2.2rem)}
   }
 
   /* ---------- SIGUIENTE PROYECTO ---------- */
@@ -713,7 +703,7 @@
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap">
-      <div class="hero-eyebrow eyebrow" data-i18n="heroKicker">Diseñador · Córdoba, Argentina</div>
+      <div class="hero-eyebrow eyebrow" data-i18n="heroKicker">Ecodiseño Radikal · Córdoba, Argentina</div>
       <h1><span data-i18n="heroLead">El diseño no termina en los objetos. También da forma a</span><br><span class="cycle" aria-live="polite"><span class="word" data-i18n="cycle0">hábitos</span></span></h1>
       <div class="hero-bottom">
       <p class="hero-lede" data-i18n="heroLede">Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.</p>
@@ -734,7 +724,6 @@
         <a class="hw-all" href="#proyectos"><span data-i18n="heroAll">Ver proyectos</span> <i aria-hidden="true">&rarr;</i></a>
       </div>
       </div>
-      <div class="scroll-hint" data-i18n="scroll">Ecodiseño Industrial Radikal</div>
     </div>
   </section>
 
@@ -1047,10 +1036,9 @@
     es:{
       role:"Diseñador · Project Manager",
       nav1:"Manifiesto", nav2:"Enfoque", nav3:"Práctica", nav4:"Proyectos", nav5:"Contacto",
-      heroKicker:"Diseñador · Córdoba, Argentina",
+      heroKicker:"Ecodiseño Radikal · Córdoba, Argentina",
       heroLead:"El diseño no termina en los objetos. También da forma a",
       heroLede:"Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.",
-      scroll:"Ecodiseño Industrial Radikal",
       man1:"Diseño desde una conciencia de época: la de una civilización industrial que empieza a mostrar sus <em>límites</em>.",
       man2:"No busco resolver la crisis ecológica con <em>más producción</em>, sino repensar qué producimos, cómo y para qué.",
       manFull:"Creo fervientemente en nuevas formas de hacer las cosas, poniendo por encima de todo el cuidado del medioambiente, su diversidad y su preservación. Hace tres años desarrollo un <button type='button' class='manifesto-link' data-open-reader>manifiesto de diseño</button> donde articulo esta mirada.",
@@ -1085,10 +1073,9 @@
     pt:{
       role:"Designer · Project Manager",
       nav1:"Manifesto", nav2:"Abordagem", nav3:"Prática", nav4:"Projetos", nav5:"Contato",
-      heroKicker:"Designer · Córdoba, Argentina",
+      heroKicker:"Ecodesign Radikal · Córdoba, Argentina",
       heroLead:"O design não termina nos objetos. Também dá forma a",
       heroLede:"Entendo o designer como um fazedor cultural: alguém capaz de traduzir contextos, tensões e aspirações em novas formas de nos vincularmos entre todes, com o entorno e com o mundo natural que habitamos.",
-      scroll:"Ecodesign Industrial Radikal",
       man1:"Projeto a partir de uma consciência de época: a de uma civilização industrial que começa a mostrar seus <em>limites</em>.",
       man2:"Não busco resolver a crise ecológica com <em>mais produção</em>, mas repensar o que produzimos, como e para quê.",
       manFull:"Acredito fervorosamente em novas formas de fazer as coisas, colocando acima de tudo o cuidado com o meio ambiente, sua diversidade e sua preservação. Há três anos desenvolvo um <button type='button' class='manifesto-link' data-open-reader>manifesto de design</button> onde articulo esse olhar.",
@@ -1123,10 +1110,9 @@
     en:{
       role:"Designer · Project Manager",
       nav1:"Manifesto", nav2:"Approach", nav3:"Practice", nav4:"Projects", nav5:"Contact",
-      heroKicker:"Designer · Córdoba, Argentina",
+      heroKicker:"Radikal Ecodesign · Córdoba, Argentina",
       heroLead:"Design doesn't end with objects. It also gives form to",
       heroLede:"I understand the designer as a cultural maker: someone able to translate contexts, tensions, and aspirations into new ways of relating to one another, to our surroundings, and to the natural world we inhabit.",
-      scroll:"Radical Industrial Ecodesign",
       man1:"I design from an awareness of our era: that of an industrial civilization beginning to show its <em>limits</em>.",
       man2:"I don't try to solve the ecological crisis with <em>more production</em>, but to rethink what we produce, how, and what for.",
       manFull:"I firmly believe in new ways of making things, placing the care of the environment, its diversity, and its preservation above all else. For three years I have been developing a <button type='button' class='manifesto-link' data-open-reader>design manifesto</button> where I articulate this view.",
