@@ -3,7 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="build" content="visor-v6" />
+<meta name="build" content="v7-ux" />
+<link rel="canonical" href="https://radikalecodesign.com/" />
+<link rel="alternate" hreflang="es" href="https://radikalecodesign.com/" />
+<link rel="alternate" hreflang="pt" href="https://radikalecodesign.com/?lang=pt" />
+<link rel="alternate" hreflang="en" href="https://radikalecodesign.com/?lang=en" />
+<link rel="alternate" hreflang="x-default" href="https://radikalecodesign.com/" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Matías Oliva",
+ "jobTitle":"Diseñador industrial","url":"https://radikalecodesign.com/",
+ "email":"mailto:olivadisenoind@gmail.com",
+ "address":{"@type":"PostalAddress","addressLocality":"Córdoba","addressCountry":"AR"},
+ "sameAs":["https://www.linkedin.com/in/mat%C3%ADas-oliva-gerik","https://www.behance.net/matiasoliva3"]}
+</script>
 <title>Matías Oliva — EcoDiseño Radikal</title>
 <meta name="description" content="Diseño industrial como hacedor cultural. Transformar tensiones o aspiraciones en nuevas formas de vincularnos entre nosotros y con el entorno." />
 <meta name="author" content="Matías Oliva" />
@@ -123,10 +135,10 @@
   .hero{
     min-height:100svh;
     display:flex;flex-direction:column;justify-content:center;
-    padding-top:6rem;padding-bottom:4rem;
+    padding-top:5.5rem;padding-bottom:2.2rem;
     position:relative;
   }
-  .hero-eyebrow{margin-bottom:2.2rem}
+  .hero-eyebrow{margin-bottom:1.6rem}
   .hero h1{
     font-family:var(--font-display);
     font-weight:700;
@@ -211,7 +223,7 @@
   /* ---------- PROYECTOS (carrusel) ---------- */
   .project + .project{margin-top:clamp(3rem,6vh,5rem)}
   .project-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1.1rem;padding-bottom:0.7rem;border-bottom:1px solid var(--line)}
-  .project-head b{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,1rem + 1vw,2rem);letter-spacing:-0.02em}
+  .project-head h3{font-family:var(--font-display);font-weight:600;font-size:clamp(1.3rem,1rem + 1vw,2rem);letter-spacing:-0.02em}
   .project-head span{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--bone-dim);white-space:nowrap}
   .carousel{position:relative}
   .c-fullbleed{width:100vw;position:relative;left:50%;right:50%;margin-left:-50vw;margin-right:-50vw}
@@ -388,7 +400,7 @@
   }
 
   .pc-body{padding:1.15rem clamp(1rem,1.6vw,1.3rem) 1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
-  .pc-body b{
+  .pc-body h3{
     font-family:var(--font-display);font-weight:600;line-height:1.05;letter-spacing:-.02em;
     font-size:clamp(1.15rem,1rem + .5vw,1.5rem);
   }
@@ -430,7 +442,7 @@
   }
   @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.75)}}
   @media(prefers-reduced-motion:reduce){ .pc-live::before{animation:none} }
-  .proj-card.is-empty .pc-body b{color:var(--bone-dim)}
+  .proj-card.is-empty .pc-body h3{color:var(--bone-dim)}
 
   /* --- panel desplegable con el carrusel --- */
   .proj-panel{
@@ -598,6 +610,76 @@
   .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){ .reveal{opacity:1;transform:none;transition:none} }
+
+  /* ---------- ÁREAS TÁCTILES (mínimo 44px) ---------- */
+  .lang button{padding:0.75rem 0.45rem;margin:-0.75rem -0.15rem;min-height:44px}
+  .nav-links a{padding:0.8rem 0;display:inline-block}
+  .socials a{padding:0.7rem 0;display:inline-block;min-height:44px}
+  .cta-mail{padding:0.25rem 0;display:inline-block}
+  .brand{padding:0.3rem 0}
+  .manifesto-link{padding:0.55rem 0;min-height:44px}
+  @media(max-width:700px){
+    .socials{gap:0.2rem 1.4rem}
+  }
+
+  /* ---------- TIRA DE TRABAJO EN EL HERO ---------- */
+  .hero-work{margin-top:clamp(1.4rem,2.4vw,2rem);display:flex;align-items:flex-end;gap:clamp(.6rem,1.4vw,1rem);flex-wrap:wrap}
+  .hw-item{
+    position:relative;display:block;width:clamp(92px,15vw,168px);
+    border:1px solid var(--line);overflow:hidden;background:var(--ink-2);
+    transition:border-color .3s,transform .35s cubic-bezier(.4,.01,.2,1);
+  }
+  .hw-item:hover{border-color:var(--ultra);transform:translateY(-4px)}
+  .hw-item img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;display:block;filter:grayscale(.45) brightness(.78);transition:filter .45s,transform .6s}
+  .hw-item:hover img{filter:none;transform:scale(1.06)}
+  .hw-item b{
+    display:block;padding:.5rem .55rem .6rem;font-family:var(--font-mono);font-weight:400;
+    font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bone-dim);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .hw-item:hover b{color:var(--bone)}
+  .hw-all{
+    align-self:center;font-family:var(--font-mono);font-size:.66rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ultra-2);padding:.95rem .2rem;min-height:44px;display:inline-flex;gap:.5rem;align-items:center;
+  }
+  .hw-all i{font-style:normal;transition:transform .3s}
+  .hw-all:hover i{transform:translateX(6px)}
+
+  .hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap}
+  .hero-bottom .hero-lede{flex:1 1 22rem;max-width:34rem;margin-bottom:0}
+  .hero-work{flex:0 0 auto;flex-wrap:nowrap;margin-top:0}
+  @media(max-width:900px){
+    .hero-bottom{flex-direction:column;align-items:stretch}
+    /* en mobile la prueba visual va antes del texto largo */
+    .hero-work{order:-1;margin:0 0 .4rem;flex-wrap:wrap}
+    .hero-bottom .hero-lede{margin-top:.6rem}
+  }
+
+  /* ---------- SIGUIENTE PROYECTO ---------- */
+  .pp-foot{display:flex;justify-content:flex-end;margin-top:1.1rem;padding-top:1rem;border-top:1px solid var(--line)}
+  .pp-next{
+    background:none;border:1px solid var(--line);color:var(--bone);cursor:pointer;
+    font-family:var(--font-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+    padding:.85rem 1.1rem;display:flex;align-items:center;gap:.6rem;transition:.25s;min-height:44px;
+  }
+  .pp-next:hover{border-color:var(--ultra);color:var(--ultra-2)}
+  .pp-next i{font-style:normal;transition:transform .3s}
+  .pp-next:hover i{transform:translateX(6px)}
+
+  /* ---------- CONTACTO ---------- */
+  .avail{
+    margin-top:1.2rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:.6rem;
+  }
+  .avail::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ultra);flex:none}
+  .copy-mail{
+    background:none;border:1px solid var(--line);color:var(--bone-dim);cursor:pointer;
+    font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:.55rem .7rem;margin-left:.6rem;transition:.25s;min-height:36px;
+  }
+  .copy-mail:hover{border-color:var(--ultra);color:var(--bone)}
+  .copy-mail.done{border-color:var(--ultra);color:var(--ultra-2)}
+  .eyebrow{margin:0;font-weight:400}
 </style>
 </head>
 <body>
@@ -631,7 +713,25 @@
     <div class="wrap">
       <div class="hero-eyebrow eyebrow" data-i18n="heroKicker">Diseñador · Córdoba, Argentina</div>
       <h1><span data-i18n="heroLead">El diseño no termina en los objetos. También da forma a —</span><br><span class="cycle" aria-live="polite"><span class="word" data-i18n="cycle0">hábitos</span></span></h1>
+      <div class="hero-bottom">
       <p class="hero-lede" data-i18n="heroLede">Entiendo al diseñador como un hacedor cultural: alguien capaz de traducir contextos, tensiones y aspiraciones en nuevas formas de vincularnos entre todxs, con el entorno y con el mundo natural que habitamos.</p>
+      <!-- ► Tira de trabajo: lleva a la grilla y abre el proyecto directamente. -->
+      <div class="hero-work">
+        <a class="hw-item" href="#proyectos" data-jump="p1">
+          <img src="fotos/sm/capullo-01.jpg" alt="Sillón Capullo" width="640" height="400">
+          <b data-i18n="p1t">Sillón Capullo</b>
+        </a>
+        <a class="hw-item" href="#proyectos" data-jump="p2">
+          <img src="fotos/sm/cianoback-01.jpg" alt="Kit Cianoback" width="640" height="400">
+          <b data-i18n="p2t">Kit Cianoback</b>
+        </a>
+        <a class="hw-item" href="#proyectos" data-jump="p3">
+          <img src="fotos/sm/ordna-01.jpg" alt="Ordna" width="640" height="400">
+          <b data-i18n="p3t">Ordna</b>
+        </a>
+        <a class="hw-all" href="#proyectos"><span data-i18n="heroAll">Ver proyectos</span> <i aria-hidden="true">&rarr;</i></a>
+      </div>
+      </div>
       <div class="scroll-hint" data-i18n="scroll">Ecodiseño Industrial Radikal</div>
     </div>
   </section>
@@ -641,7 +741,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>01</span>
-        <span class="eyebrow"><span class="sec" data-i18n="nav1">Manifiesto</span></span>
+        <h2 class="eyebrow"><span class="sec" data-i18n="nav1">Manifiesto</span></h2>
       </div>
       <p class="reveal" data-i18n="man1">Diseño desde una conciencia de época: la de una civilización industrial que empieza a mostrar sus <em>límites</em>.</p>
       <p class="reveal" data-i18n="man2">No busco resolver la crisis ecológica con <em>más producción</em>, sino repensar qué producimos, cómo y para qué.</p>
@@ -654,7 +754,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>02</span>
-        <span class="eyebrow"><span class="sec" data-i18n="nav2">Enfoque</span> — <span data-i18n="enfoqueSub">tres miradas que se cruzan</span></span>
+        <h2 class="eyebrow"><span class="sec" data-i18n="nav2">Enfoque</span> — <span data-i18n="enfoqueSub">tres miradas que se cruzan</span></h2>
       </div>
       <div class="pillars reveal">
         <article class="pillar">
@@ -681,7 +781,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>03</span>
-        <span class="eyebrow"><span class="sec" data-i18n="nav3">Práctica</span></span>
+        <h2 class="eyebrow"><span class="sec" data-i18n="nav3">Práctica</span></h2>
       </div>
       <div class="rows reveal">
         <div class="row">
@@ -725,7 +825,7 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>04</span>
-        <span class="eyebrow"><span class="sec" data-i18n="nav4">Proyectos</span> — <span data-i18n="proySub">selección</span></span>
+        <h2 class="eyebrow"><span class="sec" data-i18n="nav4">Proyectos</span> — <span data-i18n="proySub">selección</span></h2>
       </div>
       <!-- ► GRILLA DE CARDS: cada card abre su carrusel en un panel desplegable.
            Sumar proyecto: 1) agregar un <button class="proj-card" data-project="p4"> en .proj-grid
@@ -734,12 +834,12 @@
       <div class="proj-grid" id="projGrid">
         <button class="proj-card reveal" type="button" data-project="p1" aria-expanded="false" aria-controls="projPanel">
           <div class="pc-media">
-            <img src="fotos/capullo-01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img src="fotos/sm/capullo-01.jpg" alt="" loading="lazy" aria-hidden="true" width="640" height="400">
             <span class="pc-num">01</span>
             <span class="pc-count">05 <span data-i18n="cardImgs">imágenes</span></span>
           </div>
           <div class="pc-body">
-            <b data-i18n="p1t">Sillón Capullo</b>
+            <h3 class="pc-title" data-i18n="p1t">Sillón Capullo</h3>
             <span class="pc-cat" data-i18n="p1c">Objeto · 2025</span>
             <p class="pc-hook" data-i18n="p1desc"><span>Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.</span></p>
             <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
@@ -747,12 +847,12 @@
         </button>
         <button class="proj-card reveal" type="button" data-project="p2" aria-expanded="false" aria-controls="projPanel">
           <div class="pc-media">
-            <img src="fotos/cianoback-01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img src="fotos/sm/cianoback-01.jpg" alt="" loading="lazy" aria-hidden="true" width="640" height="400">
             <span class="pc-num">02</span>
             <span class="pc-count">04 <span data-i18n="cardImgs">imágenes</span></span>
           </div>
           <div class="pc-body">
-            <b data-i18n="p2t">Kit Cianoback</b>
+            <h3 class="pc-title" data-i18n="p2t">Kit Cianoback</h3>
             <span class="pc-cat" data-i18n="p2c">Objeto · 2024</span>
             <p class="pc-hook" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></p>
             <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
@@ -760,12 +860,12 @@
         </button>
         <button class="proj-card reveal" type="button" data-project="p3" aria-expanded="false" aria-controls="projPanel">
           <div class="pc-media">
-            <img src="fotos/ordna-01.jpg" alt="" loading="lazy" aria-hidden="true">
+            <img src="fotos/sm/ordna-01.jpg" alt="" loading="lazy" aria-hidden="true" width="640" height="400">
             <span class="pc-num">03</span>
             <span class="pc-count">12 <span data-i18n="cardImgs">imágenes</span></span>
           </div>
           <div class="pc-body">
-            <b data-i18n="p3t">Ordna</b>
+            <h3 class="pc-title" data-i18n="p3t">Ordna</h3>
             <span class="pc-cat" data-i18n="p3c">Objeto · 2026</span>
             <p class="pc-hook" data-i18n="p3desc"><span>Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.</span></p>
             <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
@@ -777,7 +877,7 @@
             <span class="pc-live" data-i18n="soonTag">En desarrollo</span>
           </div>
           <div class="pc-body">
-            <b data-i18n="soonT">Proyecto 04</b>
+            <h3 class="pc-title" data-i18n="soonT">Proyecto 04</h3>
             <span class="pc-cat" data-i18n="soonC">Próximamente · 2026</span>
             <p class="pc-hook" data-i18n="soonDesc"><span>Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.</span></p>
             <span class="pc-cta" style="color:var(--bone-dim)"><span data-i18n="soonCta">En taller</span> <i aria-hidden="true">&middot;&middot;&middot;</i></span>
@@ -786,23 +886,39 @@
         <div class="proj-panel" id="projPanel" hidden>
           <button class="pp-close" type="button" aria-label="Cerrar proyecto"><span data-i18n="cardClose">Cerrar</span> <span aria-hidden="true">&times;</span></button>
           <div class="pp-body"></div>
+          <div class="pp-foot">
+            <button class="pp-next" type="button"><span data-i18n="nextProj">Siguiente proyecto</span> <i aria-hidden="true">&rarr;</i></button>
+          </div>
         </div>
       </div>
+
+      <!-- ═══════════════════════════════════════════════════════════════
+           ► PLANTILLA DE CASO DE ESTUDIO — completá y pegá dentro de
+             cualquier <article class="project">, justo después de .project-head.
+             Sin esto los proyectos siguen siendo galerías, no casos.
+
+           <div class="case">
+             <div class="case-row"><b>Contexto</b><p>Qué problema había y para quién.</p></div>
+             <div class="case-row"><b>Mi rol</b><p>Qué hiciste vos concretamente. Si fue en equipo, decilo.</p></div>
+             <div class="case-row"><b>Proceso</b><p>Decisión clave, materiales, prototipos, ensayos.</p></div>
+             <div class="case-row"><b>Resultado</b><p>Qué cambió. Datos si los tenés: costo, kg recuperados, premio.</p></div>
+           </div>
+           ═══════════════════════════════════════════════════════════════ -->
 
       <!-- depósito oculto: los carruseles viven acá hasta que se abre su card -->
       <div id="projStore">
       <article class="project" id="proj-p1">
         <div class="project-head">
-          <b data-i18n="p1t">Sillón Capullo</b>
+          <h3 class="pc-title" data-i18n="p1t">Sillón Capullo</h3>
           <span data-i18n="p1c">Objeto · 2025</span>
         </div>
         <div class="carousel">
           <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
-            <div class="slide"><div class="slide-media"><img src="fotos/capullo-01.jpg" alt="capullo imagen 1" loading="lazy"><div class="slide-caption" data-i18n="p1desc"><span>Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.</span></div></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/capullo-02.jpg" alt="capullo imagen 2" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/capullo-03.jpg" alt="capullo imagen 3" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/capullo-04.jpg" alt="capullo imagen 4" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/capullo-05.jpg" alt="capullo imagen 5" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/capullo-01.jpg" data-full="fotos/capullo-01.jpg" srcset="fotos/md/capullo-01.jpg 1200w, fotos/capullo-01.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Sillón Capullo — imagen 1" loading="lazy" decoding="async"><div class="slide-caption" data-i18n="p1desc"><span>Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/capullo-02.jpg" data-full="fotos/capullo-02.jpg" srcset="fotos/md/capullo-02.jpg 1200w, fotos/capullo-02.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Sillón Capullo — imagen 2" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/capullo-03.jpg" data-full="fotos/capullo-03.jpg" srcset="fotos/md/capullo-03.jpg 1200w, fotos/capullo-03.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Sillón Capullo — imagen 3" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/capullo-04.jpg" data-full="fotos/capullo-04.jpg" srcset="fotos/md/capullo-04.jpg 1200w, fotos/capullo-04.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Sillón Capullo — imagen 4" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/capullo-05.jpg" data-full="fotos/capullo-05.jpg" srcset="fotos/md/capullo-05.jpg 1200w, fotos/capullo-05.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Sillón Capullo — imagen 5" loading="lazy" decoding="async"></div></div>
           </div></div>
           <div class="c-ctrl">
             <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
@@ -813,15 +929,15 @@
       </article>
       <article class="project" id="proj-p2">
         <div class="project-head">
-          <b data-i18n="p2t">Kit Cianoback</b>
+          <h3 class="pc-title" data-i18n="p2t">Kit Cianoback</h3>
           <span data-i18n="p2c">Objeto · 2024</span>
         </div>
         <div class="carousel">
           <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
-            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-01.jpg" alt="cianoback imagen 1" loading="lazy"><div class="slide-caption" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></div></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-02.jpg" alt="cianoback imagen 2" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-03.jpg" alt="cianoback imagen 3" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/cianoback-04.jpg" alt="cianoback imagen 4" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-01.jpg" data-full="fotos/cianoback-01.jpg" srcset="fotos/md/cianoback-01.jpg 1200w, fotos/cianoback-01.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 1" loading="lazy" decoding="async"><div class="slide-caption" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-02.jpg" data-full="fotos/cianoback-02.jpg" srcset="fotos/md/cianoback-02.jpg 1200w, fotos/cianoback-02.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 2" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-03.jpg" data-full="fotos/cianoback-03.jpg" srcset="fotos/md/cianoback-03.jpg 1200w, fotos/cianoback-03.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 3" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-04.jpg" data-full="fotos/cianoback-04.jpg" srcset="fotos/md/cianoback-04.jpg 1200w, fotos/cianoback-04.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 4" loading="lazy" decoding="async"></div></div>
           </div></div>
           <div class="c-ctrl">
             <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
@@ -832,23 +948,23 @@
       </article>
       <article class="project" id="proj-p3">
         <div class="project-head">
-          <b data-i18n="p3t">Ordna</b>
+          <h3 class="pc-title" data-i18n="p3t">Ordna</h3>
           <span data-i18n="p3c">Objeto · 2026</span>
         </div>
         <div class="carousel">
           <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-01.jpg" alt="ordna imagen 1" loading="lazy"><div class="slide-caption" data-i18n="p3desc"><span>Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.</span></div></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-02.jpg" alt="ordna imagen 2" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-03.jpg" alt="ordna imagen 3" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-04.jpg" alt="ordna imagen 4" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-05.jpg" alt="ordna imagen 5" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-06.jpg" alt="ordna imagen 6" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-07.jpg" alt="ordna imagen 7" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-08.jpg" alt="ordna imagen 8" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-09.jpg" alt="ordna imagen 9" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-10.jpg" alt="ordna imagen 10" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-11.jpg" alt="ordna imagen 11" loading="lazy"></div></div>
-            <div class="slide"><div class="slide-media"><img src="fotos/ordna-12.jpg" alt="ordna imagen 12" loading="lazy"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-01.jpg" data-full="fotos/ordna-01.jpg" srcset="fotos/md/ordna-01.jpg 1200w, fotos/ordna-01.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 1" loading="lazy" decoding="async"><div class="slide-caption" data-i18n="p3desc"><span>Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-02.jpg" data-full="fotos/ordna-02.jpg" srcset="fotos/md/ordna-02.jpg 1200w, fotos/ordna-02.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 2" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-03.jpg" data-full="fotos/ordna-03.jpg" srcset="fotos/md/ordna-03.jpg 1200w, fotos/ordna-03.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 3" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-04.jpg" data-full="fotos/ordna-04.jpg" srcset="fotos/md/ordna-04.jpg 1200w, fotos/ordna-04.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 4" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-05.jpg" data-full="fotos/ordna-05.jpg" srcset="fotos/md/ordna-05.jpg 1200w, fotos/ordna-05.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 5" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-06.jpg" data-full="fotos/ordna-06.jpg" srcset="fotos/md/ordna-06.jpg 1200w, fotos/ordna-06.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 6" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-07.jpg" data-full="fotos/ordna-07.jpg" srcset="fotos/md/ordna-07.jpg 1200w, fotos/ordna-07.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 7" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-08.jpg" data-full="fotos/ordna-08.jpg" srcset="fotos/md/ordna-08.jpg 1200w, fotos/ordna-08.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 8" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-09.jpg" data-full="fotos/ordna-09.jpg" srcset="fotos/md/ordna-09.jpg 1200w, fotos/ordna-09.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 9" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-10.jpg" data-full="fotos/ordna-10.jpg" srcset="fotos/md/ordna-10.jpg 1200w, fotos/ordna-10.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 10" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-11.jpg" data-full="fotos/ordna-11.jpg" srcset="fotos/md/ordna-11.jpg 1200w, fotos/ordna-11.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 11" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/ordna-12.jpg" data-full="fotos/ordna-12.jpg" srcset="fotos/md/ordna-12.jpg 1200w, fotos/ordna-12.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Ordna — imagen 12" loading="lazy" decoding="async"></div></div>
           </div></div>
           <div class="c-ctrl">
             <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
@@ -866,12 +982,14 @@
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="mark"><span class="flame" aria-hidden="true"><svg viewBox="0 0 24 32"><path d="M13.2 1.2c.7 4-2 6.2-3.5 8.5-1 1.6-1.7 3.1-1.7 5a5 5 0 0 0 10 0c0-1.8-.6-3.4-1.7-4.7.1 1.5-1.1 2.7-2.2 2.7 1.8-3.1-.3-7.6-.9-11.5z" fill="currentColor"/></svg></span>05</span>
-        <span class="eyebrow"><span class="sec" data-i18n="nav5">Contacto</span></span>
+        <h2 class="eyebrow"><span class="sec" data-i18n="nav5">Contacto</span></h2>
       </div>
       <h2 class="cta-line reveal"><span data-i18n="ctaLead">Pensemos juntos qué producir,</span> <a class="cta-mail" href="mailto:olivadisenoind@gmail.com" data-i18n="ctaMail">y para qué.</a></h2>
+      <!-- ► EDITÁ O BORRÁ esta línea según tu disponibilidad real. -->
+      <p class="avail reveal" data-i18n="availTxt">Disponible para proyectos de producto, ecodiseño y consultoría</p>
       <!-- ► Reemplazá el email de arriba (href="mailto:...") y los enlaces de abajo. -->
       <div class="socials reveal">
-        <a href="mailto:olivadisenoind@gmail.com" data-i18n="soMail">olivadisenoind@gmail.com</a>
+        <a href="mailto:olivadisenoind@gmail.com" data-i18n="soMail">olivadisenoind@gmail.com</a><button class="copy-mail" type="button" data-mail="olivadisenoind@gmail.com"><span data-i18n="copyMail">Copiar</span></button>
         <a href="https://www.linkedin.com/in/mat%C3%ADas-oliva-gerik" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://www.behance.net/matiasoliva3" target="_blank" rel="noopener">Behance</a>
       </div>
@@ -947,6 +1065,8 @@
       proySub:"selección",
       cardCta:"Ver proyecto", cardClose:"Cerrar", cardImgs:"imágenes",
       lbHint:"Rueda o pellizcá para hacer zoom · arrastrá para mover · doble clic para acercar · Esc para salir",
+      heroAll:"Ver proyectos", nextProj:"Siguiente proyecto", copyMail:"Copiar", copiedMail:"¡Copiado!",
+      availTxt:"Disponible para proyectos de producto, ecodiseño y consultoría",
       soonT:"Proyecto 04", soonC:"Próximamente · 2026", soonTag:"En desarrollo", soonCta:"En taller",
       soonDesc:"Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.",
 
@@ -983,6 +1103,8 @@
       proySub:"seleção",
       cardCta:"Ver projeto", cardClose:"Fechar", cardImgs:"imagens",
       lbHint:"Role ou pince para dar zoom · arraste para mover · duplo clique para aproximar · Esc para sair",
+      heroAll:"Ver projetos", nextProj:"Próximo projeto", copyMail:"Copiar", copiedMail:"Copiado!",
+      availTxt:"Disponível para projetos de produto, ecodesign e consultoria",
       soonT:"Projeto 04", soonC:"Em breve · 2026", soonTag:"Em desenvolvimento", soonCta:"No ateliê",
       soonDesc:"Um novo projeto está em processo no ateliê. Volte em breve para vê-lo publicado aqui.",
 
@@ -1019,6 +1141,8 @@
       proySub:"selection",
       cardCta:"View project", cardClose:"Close", cardImgs:"images",
       lbHint:"Scroll or pinch to zoom · drag to move · double-click to zoom in · Esc to exit",
+      heroAll:"View projects", nextProj:"Next project", copyMail:"Copy", copiedMail:"Copied!",
+      availTxt:"Available for product design, ecodesign and consulting work",
       soonT:"Project 04", soonC:"Coming soon · 2026", soonTag:"In development", soonCta:"In the studio",
       soonDesc:"A new project is currently in the works. Come back soon to see it published here.",
 
@@ -1062,7 +1186,15 @@
 
   // language switching
   document.querySelectorAll(".lang button").forEach(btn=>{
-    btn.addEventListener("click", ()=> applyLang(btn.dataset.lang));
+    btn.addEventListener("click", ()=>{
+      applyLang(btn.dataset.lang);
+      try{
+        const u = new URL(location.href);
+        if(btn.dataset.lang === "es") u.searchParams.delete("lang");
+        else u.searchParams.set("lang", btn.dataset.lang);
+        history.replaceState(null, "", u);
+      }catch(err){}
+    });
   });
 
   // hero word cycle
@@ -1107,7 +1239,7 @@
     originals.forEach((s,i)=>{ s.dataset.idx = i; });
     const IMGS = originals.map(s=>{
       const im = s.querySelector("img");
-      return im ? { src: im.getAttribute("src"), alt: im.getAttribute("alt") || "" } : null;
+      return im ? { src: im.getAttribute("data-full") || im.getAttribute("src"), alt: im.getAttribute("alt") || "" } : null;
     }).filter(Boolean);
     car.__images = IMGS;
     const curEl = car.querySelector(".c-cur");
@@ -1227,7 +1359,7 @@
         setTx(txFor(cur), true);   // volver al lugar
         if(isTap && pressSlide && typeof openLightbox === "function"){
           const idx = parseInt(pressSlide.dataset.idx, 10);
-          const head = car.closest(".project") && car.closest(".project").querySelector(".project-head b");
+          const head = car.closest(".project") && car.closest(".project").querySelector(".project-head h3");
           openLightbox(IMGS, isNaN(idx) ? realIndex() : idx, head ? head.textContent : "");
         }
       }
@@ -1242,6 +1374,22 @@
     place();
     if(document.readyState !== "complete") window.addEventListener("load", place, { once:true });
     let rz; window.addEventListener("resize", ()=>{ clearTimeout(rz); rz = setTimeout(place, 120); });
+  });
+
+  /* copiar email al portapapeles */
+  document.querySelectorAll(".copy-mail").forEach(btn=>{
+    btn.addEventListener("click", async ()=>{
+      const txt = btn.dataset.mail || "";
+      const label = btn.querySelector("span");
+      const prev = label ? label.textContent : "";
+      try{
+        if(navigator.clipboard) await navigator.clipboard.writeText(txt);
+        else { const t=document.createElement("textarea"); t.value=txt; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+        btn.classList.add("done");
+        if(label) label.textContent = (I18N[current] && I18N[current].copiedMail) || "¡Copiado!";
+        setTimeout(()=>{ btn.classList.remove("done"); if(label) label.textContent = prev; }, 2000);
+      }catch(err){}
+    });
   });
 
   /* ============================================================
@@ -1531,6 +1679,27 @@
     cards().forEach(card=>{
       card.addEventListener("click", ()=> openProject(card.dataset.project, card));
     });
+
+    // tira del hero: baja a la grilla y abre el proyecto
+    document.querySelectorAll("[data-jump]").forEach(a=>{
+      a.addEventListener("click", e=>{
+        e.preventDefault();
+        const id = a.dataset.jump;
+        const card = grid.querySelector('.proj-card[data-project="' + id + '"]');
+        if(!card) return;
+        grid.scrollIntoView({behavior: reduceMotion ? "auto" : "smooth", block:"start"});
+        setTimeout(()=> openProject(id, card), reduceMotion ? 0 : 520);
+      });
+    });
+
+    // siguiente proyecto sin volver a la grilla
+    const nextBtn = panel.querySelector(".pp-next");
+    if(nextBtn) nextBtn.addEventListener("click", ()=>{
+      const all = cards();
+      const i = all.findIndex(c => c.dataset.project === openId);
+      const nxt = all[(i + 1) % all.length];
+      if(nxt) openProject(nxt.dataset.project, nxt);
+    });
     closeBtn.addEventListener("click", ()=> closeProject());
     document.addEventListener("keydown", e=>{ if(e.key === "Escape") closeProject(); });
 
@@ -1662,7 +1831,14 @@
   });
 
   document.getElementById("yr").textContent = new Date().getFullYear();
-  applyLang("es");
+  (function(){
+    let l = "es";
+    try{
+      const q = new URLSearchParams(location.search).get("lang");
+      if(q && ["es","pt","en"].includes(q)) l = q;
+    }catch(err){}
+    applyLang(l);
+  })();
 </script>
 
 </body>
