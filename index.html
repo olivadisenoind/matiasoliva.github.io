@@ -510,7 +510,9 @@
   .proj-card,.pp-body,.proj-panel .project,.proj-panel .carousel,
   .proj-panel .c-fullbleed,.proj-panel .c-track,.proj-panel .c-rail{min-width:0;max-width:100%}
   .proj-panel .project + .project{margin-top:0}
-  .proj-panel .project-head{padding-right:6rem}
+  /* la categoría vive en la card; dentro del panel se oculta para no chocar con «Cerrar» */
+  .proj-panel .project-head span[data-i18n]{display:none}
+  .proj-panel .project-head{padding-right:7.5rem}
   .proj-panel .slide-media{height:min(62vh,540px)}
   @media(max-width:700px){ .proj-panel .slide-media{height:min(52vh,400px)} }
   .proj-panel .slide{flex:0 0 88%}
@@ -533,7 +535,8 @@
 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line);padding:2.2rem 0}
-  .foot-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim)}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;gap:.6rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim)}
+  .foot-inner span{white-space:nowrap}
 
   /* ---------- descripción breve sobre el carrusel ---------- */
   .slide-caption{
@@ -714,9 +717,9 @@
   /* ---------- CONTACTO ---------- */
   .avail{
     margin-top:1.2rem;font-family:var(--font-mono);font-size:.7rem;letter-spacing:.1em;
-    text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:.6rem;
+    text-transform:uppercase;color:var(--bone-dim);
   }
-  .avail::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ultra);flex:none}
+  
   .copy-mail{
     background:none;border:1px solid var(--line);color:var(--bone-dim);cursor:pointer;
     font-family:var(--font-mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
@@ -748,6 +751,17 @@
     .p-mark{font-size:.8rem}
     .lb-zoom{font-size:.78rem}
     .c-btn{font-size:1rem}
+
+    /* el pie entra en un solo renglón: cuerpo y espaciado ajustados al ancho */
+    .foot-inner{font-size:clamp(.4rem,2.3vw,.68rem);letter-spacing:.03em;gap:.4rem}
+
+    /* el rol bajo el nombre: más chico y en un solo renglón */
+    .brand-txt span{font-size:.56rem;letter-spacing:.05em;white-space:nowrap}
+    /* la línea de ubicación: siempre en un renglón */
+    .hero .hero-eyebrow{font-size:.7rem;letter-spacing:.05em;white-space:nowrap}
+    /* la palabra que rota nunca se parte en dos renglones */
+    .hero h1{font-size:clamp(1.5rem,-0.25rem + 9.1vw,2.4rem)}
+    .cycle{white-space:nowrap}
     .avail{font-size:.78rem}
     .lb-hint{font-size:.66rem;letter-spacing:.06em;padding:.7rem .9rem 1rem}
 
@@ -878,7 +892,7 @@
         <article class="pillar">
           <div class="p-mark">C</div>
           <h3 data-i18n="pil3t">Sustentabilidad</h3>
-          <p data-i18n="pil3d">No una promesa de más consumo verde, sino una manera de decidir qué merece ser producido y qué no —en este mundo que, muchos dicen, está colapsando.</p>
+          <p data-i18n="pil3d">No como una promesa de mayor consumo verde, sino como una manera de ponderar qué merece ser producido y qué no, en un mundo que, según dicen, está colapsando.</p>
         </article>
       </div>
     </div>
@@ -961,7 +975,7 @@
           </div>
           <div class="pc-body">
             <h3 class="pc-title" data-i18n="p2t">Kit Cianoback</h3>
-            <span class="pc-cat" data-i18n="p2c">Objeto · 2024</span>
+            <span class="pc-cat" data-i18n="p2c">Sistema · 2026</span>
             <p class="pc-hook" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias de manera más eficiente, con menor consumo energético y una mayor concentración del residuo, facilitando así su incorporación a nuevos ciclos productivos, como la generación de biogás. Proyecto desarrollado en colaboración con Ignacio Luquez.</span></p>
             <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
           </div>
@@ -1038,7 +1052,7 @@
       <article class="project" id="proj-p2">
         <div class="project-head">
           <h3 class="pc-title" data-i18n="p2t">Kit Cianoback</h3>
-          <span data-i18n="p2c">Objeto · 2024</span>
+          <span data-i18n="p2c">Sistema · 2026</span>
         </div>
         <div class="carousel">
           <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
@@ -1095,7 +1109,7 @@
       </div>
       <h2 class="cta-line reveal"><span data-i18n="ctaLead">Pensemos juntos qué producir,</span> <a class="cta-mail" href="mailto:olivadisenoind@gmail.com" data-i18n="ctaMail">y para qué.</a></h2>
       <!-- ► EDITÁ O BORRÁ esta línea según tu disponibilidad real. -->
-      <p class="avail reveal" data-i18n="availTxt">Disponible para consultoría y proyectos de Ecodiseño Radikal.</p>
+      <p class="avail reveal" data-i18n="availTxt">Disponible para consultorías y proyectos de Ecodiseño Radikal.</p>
       <!-- ► Reemplazá el email de arriba (href="mailto:...") y los enlaces de abajo. -->
       <div class="socials reveal">
         <a href="mailto:olivadisenoind@gmail.com" data-i18n="soMail">olivadisenoind@gmail.com</a><button class="copy-mail" type="button" data-mail="olivadisenoind@gmail.com"><span data-i18n="copyMail">Copiar</span></button>
@@ -1165,7 +1179,7 @@
       pil1d:"Diseñar con y para las personas. Procesos que amplían capacidades colectivas antes que objetos que se acumulan.",
       pil2d:"Nada es residuo. Cada material es un nutriente —biológico o técnico— que vuelve a circular. Diseñar también el después.",
       pil3t:"Sustentabilidad",
-      pil3d:"No una promesa de más consumo verde, sino una manera de decidir qué merece ser producido y qué no —en este mundo que, muchos dicen, está colapsando.",
+      pil3d:"No como una promesa de mayor consumo verde, sino como una manera de ponderar qué merece ser producido y qué no, en un mundo que, según dicen, está colapsando.",
       pr1d:"Project Manager", pr1tag:"En curso",
       pr2d:"Premio especial · Categoría Profesional · Mención Especial del Jurado - Concientizar · Brasil", pr2tag:"Premio",
       pr3d:"Mención honorífica", pr3tag:"Distinción",
@@ -1174,13 +1188,13 @@
       cardCta:"Ver proyecto", cardClose:"Cerrar", cardImgs:"imágenes",
       lbHint:"Rueda o pellizcá para hacer zoom · arrastrá para mover · doble clic para acercar · Esc para salir",
       heroAll:"Ver proyectos", nextProj:"Siguiente proyecto", copyMail:"Copiar", copiedMail:"¡Copiado!",
-      availTxt:"Disponible para consultoría y proyectos de Ecodiseño Radikal.",
+      availTxt:"Disponible para consultorías y proyectos de Ecodiseño Radikal.",
       soonT:"Proyecto 04", soonC:"Próximamente · 2026", soonTag:"En desarrollo", soonCta:"En taller",
       soonDesc:"Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.",
 
       phImg:"Tu imagen aquí",
       p1t:"Sillón Capullo", p1c:"Objeto · 2025", p1desc:"Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.",
-      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias de manera más eficiente, con menor consumo energético y una mayor concentración del residuo, facilitando así su incorporación a nuevos ciclos productivos, como la generación de biogás. Proyecto desarrollado en colaboración con Ignacio Luquez.",
+      p2t:"Kit Cianoback", p2c:"Sistema · 2026", p2desc:"Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias de manera más eficiente, con menor consumo energético y una mayor concentración del residuo, facilitando así su incorporación a nuevos ciclos productivos, como la generación de biogás. Proyecto desarrollado en colaboración con Ignacio Luquez.",
       p3t:"Ordna", p3c:"Sistema · 2026", p3desc:"Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.",
       p4t:"Proyecto cuatro", p4c:"Prototipo · 2023",
       ctaLead:"Pensemos juntos qué producir,", ctaMail:"y para qué.",
@@ -1202,7 +1216,7 @@
       pil1d:"Projetar com e para as pessoas. Processos que ampliam capacidades coletivas antes que objetos que se acumulam.",
       pil2d:"Nada é resíduo. Cada material é um nutriente —biológico ou técnico— que volta a circular. Projetar também o depois.",
       pil3t:"Sustentabilidade",
-      pil3d:"Não uma promessa de mais consumo verde, mas uma maneira de decidir o que merece ser produzido e o que não —neste mundo que, muitos dizem, está entrando em colapso.",
+      pil3d:"Não como uma promessa de maior consumo verde, mas como uma maneira de ponderar o que merece ser produzido e o que não, em um mundo que, segundo dizem, está entrando em colapso.",
       pr1d:"Project Manager", pr1tag:"Em curso",
       pr2d:"Prêmio especial · Categoria Profissional · Menção Especial do Júri - Conscientizar · Brasil", pr2tag:"Prêmio",
       pr3d:"Menção honrosa", pr3tag:"Distinção",
@@ -1211,13 +1225,13 @@
       cardCta:"Ver projeto", cardClose:"Fechar", cardImgs:"imagens",
       lbHint:"Role ou pince para dar zoom · arraste para mover · duplo clique para aproximar · Esc para sair",
       heroAll:"Ver projetos", nextProj:"Próximo projeto", copyMail:"Copiar", copiedMail:"Copiado!",
-      availTxt:"Disponível para consultoria e projetos de Ecodesign Radikal.",
+      availTxt:"Disponível para consultorias e projetos de Ecodesign Radikal.",
       soonT:"Projeto 04", soonC:"Em breve · 2026", soonTag:"Em desenvolvimento", soonCta:"No ateliê",
       soonDesc:"Um novo projeto está em processo no ateliê. Volte em breve para vê-lo publicado aqui.",
 
       phImg:"Sua imagem aqui",
       p1t:"Poltrona Casulo", p1c:"Objeto · 2025", p1desc:"Design de mobiliário experimental desenvolvido a partir da reutilização de descartes têxteis. Sua silhueta envolvente propõe uma experiência diferencial e transforma esses resíduos em uma nova oportunidade material, funcional e expressiva.",
-      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de baixo custo que adapta maquinário de drenagem existente para coletar cianobactérias com maior eficiência, menor consumo energético e maior concentração do resíduo, facilitando sua incorporação em novos ciclos produtivos, como a geração de biogás. Projeto desenvolvido em colaboração com Ignacio Luquez.",
+      p2t:"Kit Cianoback", p2c:"Sistema · 2026", p2desc:"Sistema de baixo custo que adapta maquinário de drenagem existente para coletar cianobactérias com maior eficiência, menor consumo energético e maior concentração do resíduo, facilitando sua incorporação em novos ciclos produtivos, como a geração de biogás. Projeto desenvolvido em colaboração com Ignacio Luquez.",
       p3t:"Ordna", p3c:"Sistema · 2026", p3desc:"Sistema modular para a gestão de resíduos urbanos que atua como facilitador relacional entre pessoas, lixo, lar e comunidade. Facilita a separação na origem, promove hábitos responsáveis, lembra horários de coleta, favorece a integração de esquemas de classificação segundo cada comunidade e de catadores formais e informais nos circuitos de coleta urbana.",
       p4t:"Projeto quatro", p4c:"Protótipo · 2023",
       ctaLead:"Vamos pensar juntos o que produzir,", ctaMail:"e para quê.",
@@ -1239,7 +1253,7 @@
       pil1d:"Designing with and for people. Processes that expand collective capacities rather than objects that pile up.",
       pil2d:"Nothing is waste. Every material is a nutrient —biological or technical— that circulates again. Designing the afterward, too.",
       pil3t:"Sustainability",
-      pil3d:"Not a promise of more green consumption, but a way to decide what deserves to be produced and what does not —in this world that, many say, is collapsing.",
+      pil3d:"Not as a promise of greater green consumption, but as a way of weighing what deserves to be produced and what does not, in a world that, so they say, is collapsing.",
       pr1d:"Project Manager", pr1tag:"Ongoing",
       pr2d:"Special award · Professional Category · Special Jury Mention - Raising Awareness · Brazil", pr2tag:"Award",
       pr3d:"Honorable mention", pr3tag:"Distinction",
@@ -1254,7 +1268,7 @@
 
       phImg:"Your image here",
       p1t:"Cocoon Armchair", p1c:"Object · 2025", p1desc:"Experimental furniture design developed from the reuse of textile waste. Its enveloping silhouette proposes a distinctive experience and transforms these discards into a new material, functional, and expressive opportunity.",
-      p2t:"Cianoback Kit", p2c:"Object · 2024", p2desc:"A low-cost system that adapts existing drainage machinery to collect cyanobacteria with greater efficiency, lower energy consumption, and higher residue concentration — enabling its incorporation into new productive cycles, such as biogas generation. Project developed in collaboration with Ignacio Luquez.",
+      p2t:"Cianoback Kit", p2c:"System · 2026", p2desc:"A low-cost system that adapts existing drainage machinery to collect cyanobacteria with greater efficiency, lower energy consumption, and higher residue concentration — enabling its incorporation into new productive cycles, such as biogas generation. Project developed in collaboration with Ignacio Luquez.",
       p3t:"Ordna", p3c:"System · 2026", p3desc:"A modular system for urban waste management that acts as a relational enabler among people, waste, home, and community. It supports source separation, fosters responsible habits, reminds of collection schedules, and helps integrate community-specific sorting schemes and both formal and informal collectors into urban collection circuits.",
       p4t:"Project four", p4c:"Prototype · 2023",
       ctaLead:"Let's think together about what to produce,", ctaMail:"and what for.",
