@@ -115,6 +115,7 @@
   .nav-links{display:flex;gap:1.6rem;align-items:center}
   .nav-links a{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim);transition:color .2s}
   .nav-links a:hover{color:var(--bone)}
+  .nav-right{display:flex;align-items:center;gap:0.2rem}
   .lang{display:flex;gap:0.15rem;align-items:center;font-family:var(--font-mono);font-size:0.72rem}
   .lang button{
     background:none;border:none;cursor:pointer;color:var(--bone-dim);
@@ -129,6 +130,58 @@
   .lang .sep{color:var(--line)}
   .lang .sep{color:var(--line)}
   @media(max-width:760px){ .nav-mid{display:none} }
+
+  /* ═══════════ MENÚ MÓVIL ═══════════ */
+  .burger{
+    display:none;width:44px;height:44px;flex:none;
+    background:none;border:1px solid var(--line);cursor:pointer;
+    align-items:center;justify-content:center;gap:5px;flex-direction:column;
+    transition:border-color .25s;margin-left:.5rem;
+  }
+  .burger:hover,.burger[aria-expanded="true"]{border-color:var(--ultra)}
+  .burger span{
+    display:block;width:18px;height:1.5px;background:var(--bone);
+    transition:transform .3s cubic-bezier(.4,.01,.2,1),opacity .2s;
+  }
+  .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+  .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+  .mobile-menu{
+    position:fixed;inset:0;z-index:45;
+    background:rgba(12,13,9,0.97);backdrop-filter:blur(16px);
+    display:flex;flex-direction:column;justify-content:center;
+    padding:5.5rem clamp(1.5rem,7vw,3rem) 2.5rem;
+    opacity:0;visibility:hidden;transition:opacity .3s ease,visibility .3s;
+    overscroll-behavior:contain;
+  }
+  .mobile-menu.open{opacity:1;visibility:visible}
+  .mobile-menu a{
+    display:block;font-family:var(--font-display);font-weight:600;
+    font-size:clamp(2rem,9vw,2.8rem);line-height:1.15;letter-spacing:-.025em;
+    color:var(--bone);padding:.5rem 0;border-bottom:1px solid var(--line);
+    opacity:0;transform:translateY(14px);
+  }
+  .mobile-menu.open a{opacity:1;transform:none;transition:opacity .45s ease,transform .45s cubic-bezier(.4,.01,.2,1)}
+  .mobile-menu.open a:nth-child(1){transition-delay:.06s}
+  .mobile-menu.open a:nth-child(2){transition-delay:.12s}
+  .mobile-menu.open a:nth-child(3){transition-delay:.18s}
+  .mobile-menu.open a:nth-child(4){transition-delay:.24s}
+  .mobile-menu.open a:nth-child(5){transition-delay:.30s}
+  .mobile-menu a:active{color:var(--ultra-2)}
+  .mm-num{
+    font-family:var(--font-mono);font-size:.8rem;color:var(--ultra-2);
+    letter-spacing:.14em;margin-right:.9rem;vertical-align:middle;
+  }
+  body.menu-open{overflow:hidden}
+
+  @media(max-width:760px){
+    .burger{display:flex}
+    /* la barra fija no debe tapar los títulos al saltar por anclas */
+    section[id]{scroll-margin-top:5rem}
+  }
+
+
 
   /* ---------- HERO ---------- */
   .hero{
@@ -672,6 +725,56 @@
   .copy-mail:hover{border-color:var(--ultra);color:var(--bone)}
   .copy-mail.done{border-color:var(--ultra);color:var(--ultra-2)}
   .eyebrow{margin:0;font-weight:400}
+  /* ═══════════ LEGIBILIDAD EN MÓVIL ═══════════ */
+  @media(max-width:760px){
+    /* nada de texto por debajo de 12px: en pantalla chica es ilegible */
+    .row .tag{font-size:.78rem;padding:.4rem .7rem}
+    .pc-count{font-size:.78rem;padding:.35rem .6rem}
+    .pc-cat{font-size:.78rem;letter-spacing:.1em}
+    .pc-num{font-size:.82rem}
+    .pc-live{font-size:.75rem}
+    .hw-item b{font-size:.8rem;letter-spacing:.08em}
+    .hero .hero-eyebrow{font-size:.8rem;letter-spacing:.1em}
+    .eyebrow,.eyebrow .sec{font-size:.8rem}
+    .brand-txt span{font-size:.66rem}
+    .lang{font-size:.82rem}
+    .pc-hook{font-size:1rem;line-height:1.5;-webkit-line-clamp:4}
+    .p-mark{font-size:.78rem}
+    .c-count{font-size:.9rem}
+    .pc-cta{font-size:.78rem}
+    .hw-all{font-size:.78rem}
+    .pp-close{font-size:.75rem;padding:.55rem .85rem}
+    .brand-txt span{font-size:.7rem}
+    .p-mark{font-size:.8rem}
+    .lb-zoom{font-size:.78rem}
+    .c-btn{font-size:1rem}
+    .avail{font-size:.78rem}
+    .lb-hint{font-size:.66rem;letter-spacing:.06em;padding:.7rem .9rem 1rem}
+
+    /* respiración: menos padding vertical para acortar el scroll total */
+    .section{padding:clamp(3.5rem,9vh,5.5rem) 0}
+    .proj-grid{gap:1.1rem}
+
+    /* la tira del hero: 3 miniaturas parejas que entran sin apretarse */
+    .hero-work{gap:.55rem}
+    .hw-item{width:calc((100% - 1.1rem)/3);min-width:0}
+    .hw-all{width:100%;padding:.9rem 0 .2rem}
+
+    /* el visor: botones más grandes y alcanzables con el pulgar */
+    .lb-nav{width:3.4rem;height:3.4rem;font-size:1.2rem}
+    .lb-btn{width:2.8rem;height:2.8rem}
+    .lb-bar{padding:.8rem .9rem}
+
+    /* controles del carrusel al alcance del pulgar */
+    .c-btn{width:3rem;height:3rem}
+  }
+
+  /* pantallas muy angostas */
+  @media(max-width:380px){
+    .brand-txt b{font-size:.94rem}
+    .brand-txt span{font-size:.6rem}
+    .brand-logo{height:30px}
+  }
 </style>
 </head>
 <body>
@@ -693,11 +796,25 @@
       <a href="#proyectos" data-i18n="nav4">Proyectos</a>
       <a href="#contacto" data-i18n="nav5">Contacto</a>
     </nav>
-    <div class="lang" role="group" aria-label="Idioma / Language">
-      <button data-lang="es" aria-pressed="true">ES</button><span class="sep">/</span><button data-lang="pt" aria-pressed="false">PT</button><span class="sep">/</span><button data-lang="en" aria-pressed="false">EN</button>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button data-lang="es" aria-pressed="true">ES</button><span class="sep">/</span><button data-lang="pt" aria-pressed="false">PT</button><span class="sep">/</span><button data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
+
+<!-- ► Menú móvil: mismos destinos que la barra de escritorio. -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Menú principal">
+  <a href="#manifiesto"><span class="mm-num">01</span><span data-i18n="nav1">Manifiesto</span></a>
+  <a href="#enfoque"><span class="mm-num">02</span><span data-i18n="nav2">Enfoque</span></a>
+  <a href="#practica"><span class="mm-num">03</span><span data-i18n="nav3">Práctica</span></a>
+  <a href="#proyectos"><span class="mm-num">04</span><span data-i18n="nav4">Proyectos</span></a>
+  <a href="#contacto"><span class="mm-num">05</span><span data-i18n="nav5">Contacto</span></a>
+</nav>
 
 <main id="top">
   <!-- ================= HERO ================= -->
@@ -711,15 +828,15 @@
       <div class="hero-work">
         <a class="hw-item" href="#proyectos" data-jump="p1">
           <img src="fotos/sm/capullo-01.jpg" alt="Sillón Capullo" width="640" height="400">
-          <b data-i18n="p1t">Sillón Capullo</b>
+          <b>01</b>
         </a>
         <a class="hw-item" href="#proyectos" data-jump="p2">
           <img src="fotos/sm/cianoback-01.jpg" alt="Kit Cianoback" width="640" height="400">
-          <b data-i18n="p2t">Kit Cianoback</b>
+          <b>02</b>
         </a>
         <a class="hw-item" href="#proyectos" data-jump="p3">
           <img src="fotos/sm/ordna-01.jpg" alt="Ordna" width="640" height="400">
-          <b data-i18n="p3t">Ordna</b>
+          <b>03</b>
         </a>
         <a class="hw-all" href="#proyectos"><span data-i18n="heroAll">Ver proyectos</span> <i aria-hidden="true">&rarr;</i></a>
       </div>
@@ -779,9 +896,9 @@
           <div class="yr">2026</div>
           <div class="body">
             <h4>Prêmio Salão Design °27</h4>
-            <p data-i18n="pr2d">Finalista seleccionado · Categoría Profesional · Brasil</p>
+            <p data-i18n="pr2d">Premio especial · Categoría Profesional · Mención Especial del Jurado - Concientizar · Brasil</p>
           </div>
-          <div class="tag" data-i18n="pr2tag">Finalista</div>
+          <div class="tag" data-i18n="pr2tag">Premio</div>
         </div>
         <div class="row">
           <div class="yr">2026 →</div>
@@ -840,12 +957,12 @@
           <div class="pc-media">
             <img src="fotos/sm/cianoback-01.jpg" alt="" loading="lazy" aria-hidden="true" width="640" height="400">
             <span class="pc-num">02</span>
-            <span class="pc-count">04 <span data-i18n="cardImgs">imágenes</span></span>
+            <span class="pc-count">05 <span data-i18n="cardImgs">imágenes</span></span>
           </div>
           <div class="pc-body">
             <h3 class="pc-title" data-i18n="p2t">Kit Cianoback</h3>
             <span class="pc-cat" data-i18n="p2c">Objeto · 2024</span>
-            <p class="pc-hook" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></p>
+            <p class="pc-hook" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias de manera más eficiente, con menor consumo energético y una mayor concentración del residuo, facilitando así su incorporación a nuevos ciclos productivos, como la generación de biogás. Proyecto desarrollado en colaboración con Ignacio Luquez.</span></p>
             <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
           </div>
         </button>
@@ -857,7 +974,7 @@
           </div>
           <div class="pc-body">
             <h3 class="pc-title" data-i18n="p3t">Ordna</h3>
-            <span class="pc-cat" data-i18n="p3c">Objeto · 2026</span>
+            <span class="pc-cat" data-i18n="p3c">Sistema · 2026</span>
             <p class="pc-hook" data-i18n="p3desc"><span>Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.</span></p>
             <span class="pc-cta"><span data-i18n="cardCta">Ver proyecto</span> <i aria-hidden="true">&rarr;</i></span>
           </div>
@@ -925,14 +1042,15 @@
         </div>
         <div class="carousel">
           <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
-            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-01.jpg" data-full="fotos/cianoback-01.jpg" srcset="fotos/md/cianoback-01.jpg 1200w, fotos/cianoback-01.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 1" loading="lazy" decoding="async"><div class="slide-caption" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.</span></div></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-01.jpg" data-full="fotos/cianoback-01.jpg" srcset="fotos/md/cianoback-01.jpg 1200w, fotos/cianoback-01.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 1" loading="lazy" decoding="async"><div class="slide-caption" data-i18n="p2desc"><span>Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias de manera más eficiente, con menor consumo energético y una mayor concentración del residuo, facilitando así su incorporación a nuevos ciclos productivos, como la generación de biogás. Proyecto desarrollado en colaboración con Ignacio Luquez.</span></div></div></div>
             <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-02.jpg" data-full="fotos/cianoback-02.jpg" srcset="fotos/md/cianoback-02.jpg 1200w, fotos/cianoback-02.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 2" loading="lazy" decoding="async"></div></div>
             <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-03.jpg" data-full="fotos/cianoback-03.jpg" srcset="fotos/md/cianoback-03.jpg 1200w, fotos/cianoback-03.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 3" loading="lazy" decoding="async"></div></div>
             <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-04.jpg" data-full="fotos/cianoback-04.jpg" srcset="fotos/md/cianoback-04.jpg 1200w, fotos/cianoback-04.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 4" loading="lazy" decoding="async"></div></div>
+            <div class="slide"><div class="slide-media"><img src="fotos/md/cianoback-05.jpg" data-full="fotos/cianoback-05.jpg" srcset="fotos/md/cianoback-05.jpg 1200w, fotos/cianoback-05.jpg 1800w" sizes="(max-width:700px) 88vw, 62vw" alt="Kit Cianoback — imagen 5" loading="lazy" decoding="async"></div></div>
           </div></div>
           <div class="c-ctrl">
             <button class="c-btn c-prev" aria-label="Imagen anterior">&larr;</button>
-            <span class="c-count"><b class="c-cur">01</b><span class="c-slash">/</span><span class="c-tot">04</span></span>
+            <span class="c-count"><b class="c-cur">01</b><span class="c-slash">/</span><span class="c-tot">05</span></span>
             <button class="c-btn c-next" aria-label="Imagen siguiente">&rarr;</button>
           </div>
         </div>
@@ -940,7 +1058,7 @@
       <article class="project" id="proj-p3">
         <div class="project-head">
           <h3 class="pc-title" data-i18n="p3t">Ordna</h3>
-          <span data-i18n="p3c">Objeto · 2026</span>
+          <span data-i18n="p3c">Sistema · 2026</span>
         </div>
         <div class="carousel">
           <div class="c-fullbleed"><div class="c-track" tabindex="0" role="group" aria-label="Imágenes del proyecto — deslizá horizontalmente">
@@ -977,7 +1095,7 @@
       </div>
       <h2 class="cta-line reveal"><span data-i18n="ctaLead">Pensemos juntos qué producir,</span> <a class="cta-mail" href="mailto:olivadisenoind@gmail.com" data-i18n="ctaMail">y para qué.</a></h2>
       <!-- ► EDITÁ O BORRÁ esta línea según tu disponibilidad real. -->
-      <p class="avail reveal" data-i18n="availTxt">Disponible para proyectos de producto, ecodiseño radikal y consultoría</p>
+      <p class="avail reveal" data-i18n="availTxt">Disponible para consultoría y proyectos de Ecodiseño Radikal.</p>
       <!-- ► Reemplazá el email de arriba (href="mailto:...") y los enlaces de abajo. -->
       <div class="socials reveal">
         <a href="mailto:olivadisenoind@gmail.com" data-i18n="soMail">olivadisenoind@gmail.com</a><button class="copy-mail" type="button" data-mail="olivadisenoind@gmail.com"><span data-i18n="copyMail">Copiar</span></button>
@@ -1049,21 +1167,21 @@
       pil3t:"Sustentabilidad",
       pil3d:"No una promesa de más consumo verde, sino una manera de decidir qué merece ser producido y qué no —en este mundo que, muchos dicen, está colapsando.",
       pr1d:"Project Manager", pr1tag:"En curso",
-      pr2d:"Finalista seleccionado · Categoría Profesional · Brasil", pr2tag:"Finalista",
+      pr2d:"Premio especial · Categoría Profesional · Mención Especial del Jurado - Concientizar · Brasil", pr2tag:"Premio",
       pr3d:"Mención honorífica", pr3tag:"Distinción",
       pr4d:"Finalista seleccionado · Categoría Estudiante · Brasil", pr4tag:"Catálogo",
       proySub:"selección",
       cardCta:"Ver proyecto", cardClose:"Cerrar", cardImgs:"imágenes",
       lbHint:"Rueda o pellizcá para hacer zoom · arrastrá para mover · doble clic para acercar · Esc para salir",
       heroAll:"Ver proyectos", nextProj:"Siguiente proyecto", copyMail:"Copiar", copiedMail:"¡Copiado!",
-      availTxt:"Disponible para proyectos de producto, ecodiseño radikal y consultoría",
+      availTxt:"Disponible para consultoría y proyectos de Ecodiseño Radikal.",
       soonT:"Proyecto 04", soonC:"Próximamente · 2026", soonTag:"En desarrollo", soonCta:"En taller",
       soonDesc:"Un nuevo proyecto está en proceso en el taller. Vuelve pronto para verlo publicado acá.",
 
       phImg:"Tu imagen aquí",
       p1t:"Sillón Capullo", p1c:"Objeto · 2025", p1desc:"Diseño de mobiliario experimental desarrollado a partir de la reutilización de descartes textiles. Su silueta envolvente propone una experiencia diferencial y transforma estos residuos en una nueva oportunidad material, funcional y expresiva.",
-      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias con mayor eficiencia, menor consumo energético y una mayor concentración del residuo, facilitando su incorporación en nuevos ciclos productivos, como la generación de biogás.",
-      p3t:"Ordna", p3c:"Objeto · 2026", p3desc:"Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.",
+      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de bajo costo que adapta maquinaria de desagote existente para recolectar cianobacterias de manera más eficiente, con menor consumo energético y una mayor concentración del residuo, facilitando así su incorporación a nuevos ciclos productivos, como la generación de biogás. Proyecto desarrollado en colaboración con Ignacio Luquez.",
+      p3t:"Ordna", p3c:"Sistema · 2026", p3desc:"Sistema modular para la gestión de residuos urbanos que actúa como un facilitador relacional entre personas, basura, hogar y comunidad. Facilita la separación en origen, promueve hábitos responsables, recuerda horarios de recolección, favorece la integración de esquemas de clasificación según cada comunidad y de recolectores formales e informales en los circuitos de recolección urbana.",
       p4t:"Proyecto cuatro", p4c:"Prototipo · 2023",
       ctaLead:"Pensemos juntos qué producir,", ctaMail:"y para qué.",
       soMail:"olivadisenoind@gmail.com",
@@ -1086,21 +1204,21 @@
       pil3t:"Sustentabilidade",
       pil3d:"Não uma promessa de mais consumo verde, mas uma maneira de decidir o que merece ser produzido e o que não —neste mundo que, muitos dizem, está entrando em colapso.",
       pr1d:"Project Manager", pr1tag:"Em curso",
-      pr2d:"Finalista selecionado · Categoria Profissional · Brasil", pr2tag:"Finalista",
+      pr2d:"Prêmio especial · Categoria Profissional · Menção Especial do Júri - Conscientizar · Brasil", pr2tag:"Prêmio",
       pr3d:"Menção honrosa", pr3tag:"Distinção",
       pr4d:"Finalista selecionado · Categoria Estudante · Brasil", pr4tag:"Catálogo",
       proySub:"seleção",
       cardCta:"Ver projeto", cardClose:"Fechar", cardImgs:"imagens",
       lbHint:"Role ou pince para dar zoom · arraste para mover · duplo clique para aproximar · Esc para sair",
       heroAll:"Ver projetos", nextProj:"Próximo projeto", copyMail:"Copiar", copiedMail:"Copiado!",
-      availTxt:"Disponível para projetos de produto, ecodesign radikal e consultoria",
+      availTxt:"Disponível para consultoria e projetos de Ecodesign Radikal.",
       soonT:"Projeto 04", soonC:"Em breve · 2026", soonTag:"Em desenvolvimento", soonCta:"No ateliê",
       soonDesc:"Um novo projeto está em processo no ateliê. Volte em breve para vê-lo publicado aqui.",
 
       phImg:"Sua imagem aqui",
       p1t:"Poltrona Casulo", p1c:"Objeto · 2025", p1desc:"Design de mobiliário experimental desenvolvido a partir da reutilização de descartes têxteis. Sua silhueta envolvente propõe uma experiência diferencial e transforma esses resíduos em uma nova oportunidade material, funcional e expressiva.",
-      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de baixo custo que adapta maquinário de drenagem existente para coletar cianobactérias com maior eficiência, menor consumo energético e maior concentração do resíduo, facilitando sua incorporação em novos ciclos produtivos, como a geração de biogás.",
-      p3t:"Ordna", p3c:"Objeto · 2026", p3desc:"Sistema modular para a gestão de resíduos urbanos que atua como facilitador relacional entre pessoas, lixo, lar e comunidade. Facilita a separação na origem, promove hábitos responsáveis, lembra horários de coleta, favorece a integração de esquemas de classificação segundo cada comunidade e de catadores formais e informais nos circuitos de coleta urbana.",
+      p2t:"Kit Cianoback", p2c:"Objeto · 2024", p2desc:"Sistema de baixo custo que adapta maquinário de drenagem existente para coletar cianobactérias com maior eficiência, menor consumo energético e maior concentração do resíduo, facilitando sua incorporação em novos ciclos produtivos, como a geração de biogás. Projeto desenvolvido em colaboração com Ignacio Luquez.",
+      p3t:"Ordna", p3c:"Sistema · 2026", p3desc:"Sistema modular para a gestão de resíduos urbanos que atua como facilitador relacional entre pessoas, lixo, lar e comunidade. Facilita a separação na origem, promove hábitos responsáveis, lembra horários de coleta, favorece a integração de esquemas de classificação segundo cada comunidade e de catadores formais e informais nos circuitos de coleta urbana.",
       p4t:"Projeto quatro", p4c:"Protótipo · 2023",
       ctaLead:"Vamos pensar juntos o que produzir,", ctaMail:"e para quê.",
       soMail:"olivadisenoind@gmail.com",
@@ -1123,21 +1241,21 @@
       pil3t:"Sustainability",
       pil3d:"Not a promise of more green consumption, but a way to decide what deserves to be produced and what does not —in this world that, many say, is collapsing.",
       pr1d:"Project Manager", pr1tag:"Ongoing",
-      pr2d:"Selected finalist · Professional category · Brazil", pr2tag:"Finalist",
+      pr2d:"Special award · Professional Category · Special Jury Mention - Raising Awareness · Brazil", pr2tag:"Award",
       pr3d:"Honorable mention", pr3tag:"Distinction",
       pr4d:"Selected finalist · Student category · Brazil", pr4tag:"Catalogue",
       proySub:"selection",
       cardCta:"View project", cardClose:"Close", cardImgs:"images",
       lbHint:"Scroll or pinch to zoom · drag to move · double-click to zoom in · Esc to exit",
       heroAll:"View projects", nextProj:"Next project", copyMail:"Copy", copiedMail:"Copied!",
-      availTxt:"Available for product design, radikal ecodesign and consulting work",
+      availTxt:"Available for consulting and Radikal Ecodesign projects.",
       soonT:"Project 04", soonC:"Coming soon · 2026", soonTag:"In development", soonCta:"In the studio",
       soonDesc:"A new project is currently in the works. Come back soon to see it published here.",
 
       phImg:"Your image here",
       p1t:"Cocoon Armchair", p1c:"Object · 2025", p1desc:"Experimental furniture design developed from the reuse of textile waste. Its enveloping silhouette proposes a distinctive experience and transforms these discards into a new material, functional, and expressive opportunity.",
-      p2t:"Cianoback Kit", p2c:"Object · 2024", p2desc:"A low-cost system that adapts existing drainage machinery to collect cyanobacteria with greater efficiency, lower energy consumption, and higher residue concentration — enabling its incorporation into new productive cycles, such as biogas generation.",
-      p3t:"Ordna", p3c:"Object · 2026", p3desc:"A modular system for urban waste management that acts as a relational enabler among people, waste, home, and community. It supports source separation, fosters responsible habits, reminds of collection schedules, and helps integrate community-specific sorting schemes and both formal and informal collectors into urban collection circuits.",
+      p2t:"Cianoback Kit", p2c:"Object · 2024", p2desc:"A low-cost system that adapts existing drainage machinery to collect cyanobacteria with greater efficiency, lower energy consumption, and higher residue concentration — enabling its incorporation into new productive cycles, such as biogas generation. Project developed in collaboration with Ignacio Luquez.",
+      p3t:"Ordna", p3c:"System · 2026", p3desc:"A modular system for urban waste management that acts as a relational enabler among people, waste, home, and community. It supports source separation, fosters responsible habits, reminds of collection schedules, and helps integrate community-specific sorting schemes and both formal and informal collectors into urban collection circuits.",
       p4t:"Project four", p4c:"Prototype · 2023",
       ctaLead:"Let's think together about what to produce,", ctaMail:"and what for.",
       soMail:"olivadisenoind@gmail.com",
@@ -1363,6 +1481,33 @@
     if(document.readyState !== "complete") window.addEventListener("load", place, { once:true });
     let rz; window.addEventListener("resize", ()=>{ clearTimeout(rz); rz = setTimeout(place, 120); });
   });
+
+  /* ============================================================
+     MENÚ MÓVIL — se cierra al elegir destino, con Escape,
+     y si la pantalla se agranda a escritorio.
+     ============================================================ */
+  (function(){
+    const burger = document.getElementById("burger");
+    const menu   = document.getElementById("mobileMenu");
+    if(!burger || !menu) return;
+
+    function setOpen(open){
+      menu.classList.toggle("open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      document.body.classList.toggle("menu-open", open);
+    }
+    burger.addEventListener("click", ()=> setOpen(!menu.classList.contains("open")));
+    menu.querySelectorAll("a").forEach(a=>{
+      a.addEventListener("click", ()=> setOpen(false));
+    });
+    document.addEventListener("keydown", e=>{
+      if(e.key === "Escape" && menu.classList.contains("open")) setOpen(false);
+    });
+    window.addEventListener("resize", ()=>{
+      if(window.innerWidth > 760 && menu.classList.contains("open")) setOpen(false);
+    });
+  })();
 
   /* copiar email al portapapeles */
   document.querySelectorAll(".copy-mail").forEach(btn=>{
