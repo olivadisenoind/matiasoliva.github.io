@@ -111,7 +111,7 @@
   .brand-logo{height:34px;width:auto;display:block;border-radius:3px}
   .brand-txt{display:flex;flex-direction:column;line-height:1.05}
   .brand-txt b{font-family:var(--font-display);font-weight:700;font-size:1.02rem;letter-spacing:-0.01em;color:var(--bone)}
-  .brand-txt span{font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:2px}
+  .brand-txt span{font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:2px;line-height:1.25}
   .nav-links{display:flex;gap:1.6rem;align-items:center}
   .nav-links a{font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim);transition:color .2s}
   .nav-links a:hover{color:var(--bone)}
@@ -535,6 +535,8 @@
 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--line);padding:2.2rem 0}
+  .foot-top{text-align:center;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--bone-dim);margin-bottom:.9rem}
   .foot-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:nowrap;gap:.6rem;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--bone-dim)}
   .foot-inner span{white-space:nowrap}
 
@@ -739,7 +741,7 @@
     .hw-item b{font-size:.8rem;letter-spacing:.08em}
     .hero .hero-eyebrow{font-size:.8rem;letter-spacing:.1em}
     .eyebrow,.eyebrow .sec{font-size:.8rem}
-    .brand-txt span{font-size:.66rem}
+    .brand-txt span{font-size:.52rem}
     .lang{font-size:.82rem}
     .pc-hook{font-size:1rem;line-height:1.5;-webkit-line-clamp:4}
     .p-mark{font-size:.78rem}
@@ -747,16 +749,17 @@
     .pc-cta{font-size:.78rem}
     .hw-all{font-size:.78rem}
     .pp-close{font-size:.75rem;padding:.55rem .85rem}
-    .brand-txt span{font-size:.7rem}
+    .brand-txt span{font-size:.52rem}
     .p-mark{font-size:.8rem}
     .lb-zoom{font-size:.78rem}
     .c-btn{font-size:1rem}
 
     /* el pie entra en un solo renglón: cuerpo y espaciado ajustados al ancho */
-    .foot-inner{font-size:clamp(.4rem,2.3vw,.68rem);letter-spacing:.03em;gap:.4rem}
+    .foot-inner{font-size:clamp(.58rem,3vw,.68rem);letter-spacing:.06em;gap:.6rem}
+    .foot-top{font-size:clamp(.58rem,3vw,.68rem);letter-spacing:.06em;margin-bottom:.75rem}
 
     /* el rol bajo el nombre: más chico y en un solo renglón */
-    .brand-txt span{font-size:.56rem;letter-spacing:.05em;white-space:nowrap}
+    .brand-txt span{font-size:.5rem;letter-spacing:.07em}
     /* la línea de ubicación: siempre en un renglón */
     .hero .hero-eyebrow{font-size:.7rem;letter-spacing:.05em;white-space:nowrap}
     /* la palabra que rota nunca se parte en dos renglones */
@@ -786,7 +789,7 @@
   /* pantallas muy angostas */
   @media(max-width:380px){
     .brand-txt b{font-size:.94rem}
-    .brand-txt span{font-size:.6rem}
+    .brand-txt span{font-size:.46rem}
     .brand-logo{height:30px}
   }
 </style>
@@ -800,7 +803,8 @@
       <img class="brand-logo" src="data:image/png;base64,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" alt="Logo de Matías Oliva" width="84" height="132">
       <span class="brand-txt">
         <b>Matías Oliva</b>
-        <span data-i18n="role">Diseñador · Project Manager</span>
+        <span data-i18n="role1">Diseñador</span>
+        <span data-i18n="role2">Project Manager</span>
       </span>
     </a>
     <nav class="nav-links nav-mid" aria-label="Secciones">
@@ -1135,10 +1139,12 @@
 </div>
 
 <footer>
-  <div class="wrap foot-inner">
-    <span>© <span id="yr"></span> Matías Oliva</span>
-    <span data-i18n="footNote">Diseño como acto cultural</span>
-    <span>Córdoba · AR</span>
+  <div class="wrap">
+    <div class="foot-top" data-i18n="footNote">Diseño como acto cultural</div>
+    <div class="foot-inner">
+      <span>© <span id="yr"></span> Matías Oliva</span>
+      <span>Córdoba · AR</span>
+    </div>
   </div>
 </footer>
 
@@ -1166,7 +1172,7 @@
 <script>
   const I18N = {
     es:{
-      role:"Diseñador · Project Manager",
+      role1:"Diseñador", role2:"Project Manager",
       nav1:"Manifiesto", nav2:"Enfoque", nav3:"Práctica", nav4:"Proyectos", nav5:"Contacto",
       heroKicker:"Ecodiseño Radikal · Córdoba, Argentina",
       heroLead:"El diseño no termina en los objetos. También da forma a",
@@ -1203,7 +1209,7 @@
       cycle:["hábitos","relaciones","comunidades","mundos posibles"]
     },
     pt:{
-      role:"Designer · Project Manager",
+      role1:"Designer", role2:"Project Manager",
       nav1:"Manifesto", nav2:"Abordagem", nav3:"Prática", nav4:"Projetos", nav5:"Contato",
       heroKicker:"Ecodesign Radikal · Córdoba, Argentina",
       heroLead:"O design não termina nos objetos. Também dá forma a",
@@ -1240,7 +1246,7 @@
       cycle:["hábitos","relações","comunidades","mundos possíveis"]
     },
     en:{
-      role:"Designer · Project Manager",
+      role1:"Designer", role2:"Project Manager",
       nav1:"Manifesto", nav2:"Approach", nav3:"Practice", nav4:"Projects", nav5:"Contact",
       heroKicker:"Radikal Ecodesign · Córdoba, Argentina",
       heroLead:"Design doesn't end with objects. It also gives form to",
